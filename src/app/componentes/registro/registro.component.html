@@ -27,7 +27,7 @@ color="#0b2555"
       <a (click)="irARegistro()" style="background:  rgb(11, 37, 85); cursor: pointer;" href="#"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
       <a href="#"><i class="fas fa-table"></i><span>Reportes</span></a>
       <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
-      <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+      <a  style=" cursor: pointer;"  (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
     </div>
   </div>
   <!--mobile navigation bar end-->
@@ -41,8 +41,8 @@ color="#0b2555"
     <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
     <a (click)="irARegistro()" style="background:  rgb(11, 37, 85); cursor: pointer;" href="#"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
     <a (click)="irAReporte()" style="cursor: pointer;"><i class="fas fa-table"></i><span>Reportes</span></a>
-    <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
-    <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+    <a  (click)="irNosotros()" style="cursor: pointer;" ><i class="fas fa-users"></i><span>Nosotros</span></a>
+    <a  style=" cursor: pointer;"  (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
   </div>
   <!--sidebar end-->
 <style>
@@ -155,9 +155,10 @@ color="#0b2555"
           </div>
         </div>
         <label class="ml-5" for="">Foto</label><br>
-        <button class="btn btn-primary ml-5 mb-3">Abrir la Camara</button>
-        <input class="ml-5 mb-3" type="file" name="" id="">
-        <img src="{{Foto}}" style="margin-left: 140px;"  width="150" height="150" alt="">
+        <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary ml-5 mb-3">Abrir la Camara</button>
+        <input class="ml-5 mb-3" (change)="onChange($event)" type="file" name="" id="">
+          <img  class="img mt-3" src="{{CapturaImagen}}"style="margin-left: 140px;"  width="150" height="150" alt="">
+          <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
       </div>
      </div>
      <button (click)="Registrar()" class="btn btn-success mt-3">Guardar</button>
@@ -172,6 +173,34 @@ color="#0b2555"
   });
   </script>-->
 
+  <ng-template #camara let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"><i class="fas fa-camera"></i>  Camara</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="mostrar"  style="text-align:center">
+
+        <div >
+          <webcam [height]="500" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                  [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                  [videoOptions]="videoOptions"
+                  [imageQuality]="1"
+                  (cameraSwitched)="cameraWasSwitched($event)"
+                  (initError)="handleInitError($event)"
+          ></webcam>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center;" class="modal-footer">
+    <div  style="width: 100%; height: 50px; text-align: center;" class="ca">
+      <i  id="componet" (click)="d('Cross click')" (click)="triggerSnapshot();" class="fas fa-camera"></i><i id="componet1" (click)="d('Cross click')" (click)="mostrar=false" class="fas fa-sign-out-alt"></i>
+    </div>
+    </div>
+  </ng-template>
 
 
 

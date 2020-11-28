@@ -261,17 +261,23 @@ we(){
 
 
 convertToBase64(file: File) {
-  this.myimage = new Observable((subscriber: Subscriber<any>) => {
+ const observable= new Observable((subscriber: Subscriber<any>) => {
     this.readFile(file, subscriber);
 
   });
-  this.myimage.subscribe((d)=>{
-    this.images = d
-  })
+  observable.subscribe(data=>{
+    this.CapturaImagen = data
+     console.log(this.CapturaImagen)
+   })
 }
-
+irAyuda(){
+  this.router.navigate(['ayuda'])
+}
 recargar(){
   window.location.reload()
+}
+irNosotros(){
+  this.router.navigate(['nosotros'])
 }
 
 readFile(file: File, subscriber: Subscriber<any>) {
@@ -297,19 +303,20 @@ CrearConsulta(){
   let mes = this.fc.month
   let año = this.fc.year
 this.FechaFinal =dia +'-'+mes+'-'+año
- this.http.get("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.CanbiarNombreVentana+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"/Archivo").subscribe(data=>{
+ this.http.post("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.CanbiarNombreVentana+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
    this.Valor = data;
    alert(this.Valor.respuesta)
   })
 }
 
 EliminarPacienteConsulta(){
-  this.http.get("https://finalapis.herokuapp.com/api/EliminarPacienteConsulta/"+this.idPaciente+"").subscribe(data=>{
+  this.http.delete("https://finalapis.herokuapp.com/api/EliminarPacienteConsulta/"+this.idPaciente+"").subscribe(data=>{
     this.Valor = data;
     alert(this.Valor.respuesta)
+    window.location.reload()
    });
-   window.location.reload()
 }
+
 
 
 public showWebcam = true;

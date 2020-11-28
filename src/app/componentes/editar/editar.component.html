@@ -19,12 +19,8 @@
     </div>
     <div class="mobile_nav_items">
       <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
-      <a href="#"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
-      <a href="#"><i class="fas fa-table"></i><span>Reportes</span></a>
-      <a href="#"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
-      <a href="#"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
       <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
-      <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+      <a  style=" cursor: pointer;"  (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
     </div>
   </div>
   <!--mobile navigation bar end-->
@@ -36,8 +32,8 @@
       <h4>Dr.{{nombreDoctor}}</h4>
     </div>
     <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
-    <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
-    <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+    <a  style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
+    <a  style=" cursor: pointer;"  (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
   </div>
   <!--sidebar end-->
   <style>
@@ -56,7 +52,7 @@
         <label style="width: 40px; " (click)="ocurtar()" id="d"(click)="mos=!mos" [ngbTooltip]="tipContent6" (click)="mostr=!mostr"  class="btn btn-success mt-2 mr-2 ml-2" for=""><i class="fas fa-edit"></i></label>
         <div id="e" style=" width: 125px; padding-right: 0;" >
           <ng-template style="background:  rgb(11, 37, 85);" #tipContent7>Cerrar Edicion</ng-template>
-          <label  style="width: 40px;" (click)="ocurtacion()" (click)="mos=!mos" [ngbTooltip]="tipContent7" (click)="mostr=!mostr"  class="btn btn-warning mt-2 mr-2 ml-2" for=""><i class="fas fa-times"></i></label>
+          <label  style="width: 40px;" (click)="ocurtacion()" (click)="mos=!mos" [ngbTooltip]="tipContent7" (click)="mostr=!mostr"  class="btn btn-danger mt-2 mr-2 ml-2" for=""><i class="fas fa-times"></i></label>
           <ng-template style="background:  rgb(11, 37, 85);" #tipContent8>Guardar Edicion</ng-template>
           <label  style="width: 40px;" (click)=" ActualizarDatosPacientes()"  [ngbTooltip]="tipContent8" class="btn btn-primary mt-2 mr-2 ml-2" for=""><i class="fas fa-check"></i></label>
         </div>
@@ -119,7 +115,7 @@
             <td>{{i.numeroSeguro}}</td>
             <td>{{i.diagnostico}}</td>
             <td>
-              <img src="{{i.foto}}" width="50" height="50" alt="">
+              <img src="{{i.evidencia}}" width="50" height="50" alt="">
             </td>
             <td>
               <ng-template style="background:  rgb(11, 37, 85);" #tipContent>Actualizar Consulta</ng-template>
@@ -218,13 +214,12 @@
       </div>
       <div class="n">
         <label for="">Seleccionar un archivo</label>
-        <input class="btn btn-primary" type="file" name="" id="">
+        <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
       </div>
       <br>
-      <div class="snapshot" *ngIf="webcamImage">
         <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
         <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
-      </div>
+
 
       </div>
     </div>
@@ -280,13 +275,11 @@
     </div>
     <div class="n">
       <label for="">Seleccionar un archivo</label>
-      <input class="btn btn-primary" type="file" name="" id="">
+      <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
     </div>
     <br>
-    <div class="snapshot" *ngIf="webcamImage">
-      <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
-      <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
-    </div>
+    <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
+    <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
 
     </div>
   </div>

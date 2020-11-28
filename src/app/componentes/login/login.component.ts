@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   sexo: string = '';
   convert: any;
   Sexo2;
+  NombreD;
   constructor(private Http:HttpClient, private ServicioService:ServicioService, private router:Router) {}
 
   ngOnInit(): void {
@@ -39,13 +40,15 @@ export class LoginComponent implements OnInit {
       this.Http.get("https://finalapis.herokuapp.com/api/iniciar/"+this.correo+"/"+this.clave+"").subscribe(data=>{
         this.convert = data;
         this.Sexo2 = this.convert.Sexo
+        this.NombreD = this.convert.Nombre
       if (this.convert.Ok == false) {
         alert("verifique sus datos")
       } else {
         var log={
           correo:this.correo,
           clave:this.clave,
-          sexo:this.Sexo2
+          sexo:this.Sexo2,
+          nombre:this.NombreD
         }
         localStorage.clear()
         localStorage.setItem('sesion', JSON.stringify(log))

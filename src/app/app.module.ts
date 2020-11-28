@@ -14,6 +14,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { ReporteComponent } from './componentes/reporte/reporte.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AyudaComponent } from './componentes/ayuda/ayuda.component';
+import { NosotrosComponent } from './componentes/nosotros/nosotros.component';
+import { MantenimientoComponent } from './componentes/mantenimiento/mantenimiento.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     EditarComponent,
     RegistroComponent,
-    ReporteComponent
+    ReporteComponent,
+    AyudaComponent,
+    NosotrosComponent,
+    MantenimientoComponent
   ],
   imports: [
     BrowserModule,

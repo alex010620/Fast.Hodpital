@@ -39,7 +39,12 @@ sexo;
       this.Abatar="assets/businesswoman.png"
     }
   }
-
+  irAyuda(){
+    this.router.navigate(['ayuda'])
+  }
+  irNosotros(){
+    this.router.navigate(['nosotros'])
+  }
  ReporteCantidadVisita(){
    this.http.get("https://finalapis.herokuapp.com/api/idDoctor/"+this.idDoctor+"").subscribe(data=>{
     this.cantidadVisita= data

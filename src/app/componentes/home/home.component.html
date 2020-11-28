@@ -29,10 +29,10 @@ color="#0b2555"
       <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
       <a style="cursor: pointer;"  (click)="irARegistro()"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
       <a style="cursor: pointer;"  (click)="irAReporte()"><i class="fas fa-table"></i><span>Reportes</span></a>
-      <a href="#"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
-      <a href="#"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
-      <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
-      <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+      <a  style="cursor: pointer;" (click)=" openBackDropCustomClass(cambiarClave)"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
+      <a  style="cursor: pointer;" (click)="openBackDropCustom(cambiarNombreUsuario)"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
+      <a style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
+      <a style="cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
       <a href="#"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
     </div>
   </div>
@@ -45,13 +45,13 @@ color="#0b2555"
       <h4>Dr.{{NombreLogin}}</h4>
        <!--<img src="otro.png" class="profile_image" alt="">-->
     </div>
-    <a style="cursor: pointer; background:  rgb(11, 85, 23);" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a style="cursor: pointer; background: rgb(11, 37, 85);" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
     <a style="cursor: pointer;"  (click)="irARegistro()"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
     <a style="cursor: pointer;"  (click)="irAReporte()"><i class="fas fa-table"></i><span>Reportes</span></a>
     <a  style="cursor: pointer;" (click)=" openBackDropCustomClass(cambiarClave)"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
     <a  style="cursor: pointer;" (click)="openBackDropCustom(cambiarNombreUsuario)"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
-    <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
-    <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+    <a style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
+    <a style="cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
     <a href="#"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
   </div>
 
@@ -149,13 +149,12 @@ color="#0b2555"
       </div>
       <div class="n">
         <label for="">Seleccionar un archivo</label>
-        <input class="btn btn-primary" type="file" name="" id="">
+        <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
       </div>
       <br>
-      <div class="snapshot" *ngIf="webcamImage">
         <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
         <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
-      </div>
+
 
       </div>
     </div>

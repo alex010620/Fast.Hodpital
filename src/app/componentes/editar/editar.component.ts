@@ -15,6 +15,7 @@ import {Subject} from 'rxjs';
 })
 export class EditarComponent implements OnInit {
   public isCollapsed = false;
+  myimage: Observable<any>;
   globales:any
   idPaciente:any
   idDoctor:any
@@ -155,6 +156,7 @@ cd(){
       this.Diagnostico = this.Repartir.diagnostico
       this.NotaConsulta = this.Repartir.nota
       this.idConsulta = id
+      this.CapturaImagen = this.Repartir.evidencia
    })
  }
   limpiarActualizacion(){
@@ -171,10 +173,11 @@ cd(){
      let mes = this.fc.month
      let año = this.fc.year
    this.FechaFinal =dia +'-'+mes+'-'+año
-    this.http.get("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"/Archivo").subscribe(data=>{
+    this.http.post("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
       this.Valor = data;
       alert(this.Valor.respuesta)
      })
+     window.location.reload()
    }
  // RECUERDA QUE LE CAMBIASTE A POST ANTERIORMENTE
    ActualizarConsulta(){
@@ -183,11 +186,12 @@ cd(){
     let mes = this.fc.month
     let año = this.fc.year
   this.FechaFinal =dia +'-'+mes+'-'+año
-   this.http.get("https://finalapis.herokuapp.com/api/ActualizarConsulta/"+this.idConsulta+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"/Archivo").subscribe(data=>{
+   this.http.put("https://finalapis.herokuapp.com/api/ActualizarConsulta/"+this.idConsulta+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
      this.Valor = data;
      alert(this.Valor.respuesta)
+
+     window.location.reload()
     });
-    window.location.reload()
   }
 
   ActualizarDatosPacientes(){
@@ -215,7 +219,12 @@ cd(){
   openVerticallyCentered(eliminar) {
     this.modalService.open(eliminar, { centered: true });
   }
-
+  irAyuda(){
+    this.router.navigate(['ayuda'])
+  }
+  irNosotros(){
+    this.router.navigate(['nosotros'])
+  }
   open(citas) {
     this.modalService.open(citas, {size:'xl'});
   }
@@ -232,6 +241,26 @@ cd(){
   }
   //FUNCIONES PARA LA CAMARA Y CONVERCIONES A BASE 64
 
+  //Habre el modal donde esta colocada la camara
+  opening(camara) {
+    this.modalService.open(camara, { size: 'lg' });
+  }
+
+  onChange($event: Event) {
+    const file = ($event.target as HTMLInputElement).files[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File) {
+    const observable = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+    observable.subscribe(data=>{
+     this.CapturaImagen = data
+      console.log(this.CapturaImagen)
+    })
+  }
+
   readFile(file: File, subscriber: Subscriber<any>) {
     const filereader = new FileReader();
     filereader.readAsDataURL(file);
@@ -244,11 +273,6 @@ cd(){
       subscriber.error(error);
       subscriber.complete();
     };
-  }
-
-  //Habre el modal donde esta colocada la camara
-  opening(camara) {
-    this.modalService.open(camara, { size: 'lg' });
   }
 
   public showWebcam = true;
