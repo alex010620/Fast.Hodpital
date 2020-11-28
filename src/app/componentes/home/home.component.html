@@ -1,0 +1,289 @@
+<ngx-spinner
+color="#0b2555"
+>
+  <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</ngx-spinner>
+
+<body>
+  <input type="checkbox" id="check">
+  <!--header area start-->
+  <header>
+    <label for="check">
+      <i class="fas fa-bars" id="sidebar_btn"></i>
+    </label>
+    <div class="left_area">
+      <h3>Fast <span>Hospital</span></h3>
+    </div>
+    <div class="right_area">
+      <a href="#" (click)="CerrarSesion()" class="logout_btn">Cerrar Sesión</a>
+    </div>
+  </header>
+  <!--header area end-->
+  <!--mobile navigation bar start-->
+  <div class="mobile_nav">
+    <div class="nav_bar">
+      <img src="{{Abatar}}" class="mobile_profile_image" alt="">
+      <i (click)="salir=!salir" class="fa fa-bars nav_btn"></i>
+    </div>
+    <div class="mobile_nav_items" *ngIf="salir">
+      <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
+      <a style="cursor: pointer;"  (click)="irARegistro()"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
+      <a style="cursor: pointer;"  (click)="irAReporte()"><i class="fas fa-table"></i><span>Reportes</span></a>
+      <a href="#"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
+      <a href="#"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
+      <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
+      <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+      <a href="#"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
+    </div>
+  </div>
+  <!--mobile navigation bar end-->
+  <!--sidebar start-->
+  <div class="sidebar">
+    <div class="profile_info">
+      <img src="{{Abatar}}" class="profile_image" alt="" />
+      <!--<img src="otro.png" class="profile_image" alt="">-->
+      <h4>Dr.{{NombreLogin}}</h4>
+    </div>
+    <a style="cursor: pointer; background:  rgb(11, 37, 85);" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a style="cursor: pointer;"  (click)="irARegistro()"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
+    <a style="cursor: pointer;"  (click)="irAReporte()"><i class="fas fa-table"></i><span>Reportes</span></a>
+    <a  style="cursor: pointer;" (click)=" openBackDropCustomClass(cambiarClave)"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
+    <a  style="cursor: pointer;" (click)="openBackDropCustom(cambiarNombreUsuario)"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
+    <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
+    <a href="#"><i class="fas fa-question"></i><span>Ayuda</span></a>
+    <a href="#"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
+  </div>
+  <!--sidebar end-->
+
+  <div class="content">
+    <div class="card">
+      <h2>Pacientes Pertenecientes</h2>
+      <div id="cajas" class="B">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let datosP of pacientes; index as indexP">
+            <th scope="row">{{indexP}}</th>
+            <td>{{datosP.CedulaPaciente}}</td>
+            <td>{{datosP.NombrePaciente}}</td>
+            <td>{{datosP.ApellidoPaciente}}</td>
+            <td>{{datosP.EmailPaciente}}</td>
+            <td>
+              <img src="{{datosP.Foto}}" alt="" width="50" height="50">
+            </td>
+            <td>
+              <ng-template style="background:  rgb(11, 37, 85);" #tipContent>Editar Paciente</ng-template>
+              <button (click)="editarP(datosP.idPaciente,datosP.CedulaPaciente,datosP.NombrePaciente,datosP.ApellidoPaciente,datosP.EmailPaciente,datosP.Foto,datosP.Fecha_NacimientoPaciente,datosP.Tipo_SangrePaciente,datosP.AlergiasPaciente,datosP.Zodiaco,idDoctor)" style="font-size: 15px;" type="button" [ngbTooltip]="tipContent" class="btn btn-outline-success mr-2 mb-2"><i class="fas fa-user-edit"></i></button>
+              <ng-template style="background:  rgb(11, 37, 85);" #tipContent2>Eliminar Paciente</ng-template>
+              <button style="font-size: 15px;" type="button" class="btn btn-outline-danger mr-2 mb-2"  [ngbTooltip]="tipContent2" (click)="openVerticallyCentered(eliminar)" (click)="borrar(datosP.NombrePaciente, datosP.ApellidoPaciente,datosP.idPaciente)"><i class="fas fa-trash"></i></button>
+              <ng-template style="background:  rgb(11, 37, 85);" #tipContent3>Registrar Consulta</ng-template>
+              <button style="font-size: 15px;" type="button" class="btn btn-outline-warning mb-2" [ngbTooltip]="tipContent3" (click)="nombres(datosP.NombrePaciente, datosP.ApellidoPaciente,datosP.idPaciente)" (click)="open(content)"><i class="fas fa-address-book"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+
+  <!--<script type="text/javascript">
+  $(document).ready(function(){
+    $('.nav_btn').click(function(){
+      $('.mobile_nav_items').toggleClass('active');
+    });
+  });
+  </script>-->
+
+  <!--MODAL PARA CITAS-->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Crear consulta para {{CanbiarNombreVentana}}</h4>
+      <button type="button" class="close" aria-label="Close"  (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="conten">
+      <div class="div1">
+        <label  for="">Fecha de la Cita</label><br>
+        <form>
+          <div class="form-grou">
+            <div class="input-group">
+              <input [(ngModel)]="fc" id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+         <label class="mt-3" for="">Motivo de la consulta</label>
+         <textarea   [(ngModel)]="MotivoConsulta" style="height: 45px;" class="form-control" name="MotivoConsulta" id="" cols="30" rows="10"></textarea>
+          <br>
+        <label for="">Numero de Seguro</label><br>
+        <input [(ngModel)]="NumeroSeguro"  class="form-control" type="text" name="NumeroSeguro" id="">
+        <br>
+        <label for="">Monto Pagado</label><br>
+        <input  [(ngModel)]="MontoPagado"  class="form-control" type="text" name="MontoPagado" id="">
+        <br>
+        <label for="">Diagnostico</label><br>
+        <textarea [(ngModel)]="Diagnostico"   style="height: 45px;" class="form-control" name="Diagnostico" id="" cols="30" rows="10"></textarea>
+        <label class="mt-1" for="">Nota</label><br>
+        <textarea [(ngModel)]="NotaConsulta"   style="height: 45px;" class="form-control" name="NotaConsulta" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="div2">
+      <div id="f" class="n">
+        <label for="">Tomar una Foto</label><br>
+        <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
+      </div>
+      <div class="n">
+        <label for="">Seleccionar un archivo</label>
+        <input class="btn btn-primary" type="file" name="" id="">
+      </div>
+      <br>
+      <div class="snapshot" *ngIf="webcamImage">
+        <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
+        <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
+      </div>
+
+      </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+      <button (click)="CrearConsulta()" (click)="modal.close('Close click')" class="btn btn-success">Guardar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cancelar</button>
+    </div>
+  </ng-template>
+
+  <!--MODAL PARA ELIMINAR-->
+  <ng-template #eliminar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Eliminar Registro</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>¿Estás seguro de eliminar el registro de {{nombre}}?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" (click)="EliminarPacienteConsulta()" (click)="modal.close('Close click')">Aceptar</button>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cancelar</button>
+    </div>
+  </ng-template>
+
+
+
+  <ng-template #cambiarClave let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Cambiar Contraseña</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body"><br>
+      <label for="">Antigua Contraseña</label><br>
+      <input  [(ngModel)]="ViejaContrasena" class="form-control" type="text" name="ViejaContrasena" id=""><br>
+      <label for="">Nueva Contraseña</label><br>
+      <input [(ngModel)]="NuevaContrasena" class="form-control" type="text" name="NuevaContrasena" id=""><br>
+    </div>
+    <div class="modal-footer">
+      <button  (click)="openVerticall(verificar)" (click)="modal.close('Close click')" class="btn btn-success">Actualizar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  <ng-template #cambiarNombreUsuario let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Actualizar Nombres de Usuario</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body"><br>
+      <label for="">Nuevo Nombre de Usuario</label><br>
+      <input [(ngModel)]="ViejaContrasena" class="form-control" type="text" name="ViejaContrasena" id=""><br>
+      <label for="">Nueva Correo</label><br>
+      <input  [(ngModel)]="NuevaContrasena" class="form-control" type="text" name="NuevaContrasena" id=""><br>
+    </div>
+    <div class="modal-footer">
+      <button (click)="openVerticalling(verificar2)" (click)="modal.close('Close click')" class="btn btn-success">Actualizar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+
+
+  <ng-template #verificar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title"> <Label style="color: red;">Alerta!</Label><br> Intento de Cambio de Contraseña</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label for="">Introduca su Contraseña</label>
+      <input  [(ngModel)]="VerificarCalave" name="VerificarCalave"  class="form-control" type="text">
+    </div>
+    <div class="modal-footer">
+      <button  (click)="CambirPass()" (click)="modal.close('Close click')" class="btn btn-success">Aceptar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  <ng-template #verificar2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title"> <Label style="color: red;">Alerta!</Label><br> Intento de Cambio de Nombres de Usuario</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label for="">Introduca su Contraseña</label>
+      <input [(ngModel)]="VerificarCalave" name="VerificarCalave" class="form-control" type="text">
+    </div>
+    <div class="modal-footer">
+      <button  (click)="CambiarNombre()" (click)="modal.close('Close click')" class="btn btn-success">Aceptar</button>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  <ng-template #camara let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"><i class="fas fa-camera"></i>  Camara</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngIf="mostrar"  style="text-align:center">
+
+        <div >
+          <webcam [height]="500" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                  [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                  [videoOptions]="videoOptions"
+                  [imageQuality]="1"
+                  (cameraSwitched)="cameraWasSwitched($event)"
+                  (initError)="handleInitError($event)"
+          ></webcam>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center;" class="modal-footer">
+    <div  style="width: 100%; height: 50px; text-align: center;" class="ca">
+      <i  id="componet" (click)="d('Cross click')" (click)="triggerSnapshot();" class="fas fa-camera"></i><i id="componet1" (click)="d('Cross click')" (click)="mostrar=false" class="fas fa-sign-out-alt"></i>
+    </div>
+    </div>
+  </ng-template>
+
+</body>

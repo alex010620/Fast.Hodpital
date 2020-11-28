@@ -1,0 +1,8 @@
+{
+  "/api/*":{
+    "target":"https://neuton-yamc.herokuapp.com/",
+     "secure":false,
+     "logLevel":"debug"
+  }
+}
+
