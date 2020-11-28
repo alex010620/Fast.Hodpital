@@ -46,9 +46,9 @@ export class RegistroComponent implements OnInit {
     this.nombreDoctor = this.usuario.nombre
     this.sexo = this.usuario.sexo
     if (this.sexo=="Masculino") {
-      this.Abatar="../../../assets/bussiness-man.png"
+      this.Abatar="assets/bussiness-man.png"
     } else {
-      this.Abatar="../../../assets/businesswoman.png"
+      this.Abatar="assets/businesswoman.png"
     }
   }
   irHome(){

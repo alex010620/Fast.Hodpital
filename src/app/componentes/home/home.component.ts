@@ -79,9 +79,9 @@ export class HomeComponent implements OnInit {
       console.log(this.datos);
     });
     if (this.sexo=="Masculino") {
-      this.Abatar="../../../assets/bussiness-man.png"
+      this.Abatar="assets/bussiness-man.png"
     } else {
-      this.Abatar="../../../assets/businesswoman.png"
+      this.Abatar="assets/businesswoman.png"
     }
     WebcamUtil.getAvailableVideoInputs()
     .then((mediaDevices: MediaDeviceInfo[]) => {
