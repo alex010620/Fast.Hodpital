@@ -103,9 +103,9 @@ export class HomeComponent implements OnInit {
        this.sexo = this.datos.Sexo
     });
     if (this.sexo=="Masculino") {
-      this.Abatar="../../../assets/bussiness-man.png"
+      this.Abatar="assets/bussiness-man.png"
     } else {
-      this.Abatar="../../../assets/businesswoman.png"
+      this.Abatar="assets/businesswoman.png"
     }
   }
 

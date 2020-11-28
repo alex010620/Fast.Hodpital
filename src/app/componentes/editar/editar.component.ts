@@ -80,9 +80,9 @@ Foto="../../../assets/man.png"
      this.zodiaco = this.globales.zodiaco
      this.Foto = this.globales.fotoP
      if (this.sexo=="Masculino") {
-      this.Abatar="../../../assets/bussiness-man.png"
+      this.Abatar="assets/bussiness-man.png"
     } else {
-      this.Abatar="../../../assets/businesswoman.png"
+      this.Abatar="assets/businesswoman.png"
     }
     });
 
@@ -126,9 +126,9 @@ Foto="../../../assets/man.png"
       this.DatosCita = data
        });
       if (this.sexo=="Masculino") {
-        this.Abatar="../../../assets/bussiness-man.png"
+        this.Abatar="assets/bussiness-man.png"
       } else {
-        this.Abatar="../../../assets/businesswoman.png"
+        this.Abatar="assets/businesswoman.png"
       }
  }
 ocurtar(){
