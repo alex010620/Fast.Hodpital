@@ -18,7 +18,12 @@ model2: string;
 nombreDoctor;
 usuario;
 Abatar;
+fechaReporte;
 sexo;
+reporteFechas;
+fecha;
+fha;
+convert;
   constructor(private router:Router, private http:HttpClient,private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) { }
 
   ngOnInit(): void {
@@ -99,4 +104,17 @@ readonly DELIMITER = '/';
     localStorage.setItem('llave',this.idDoctor)
     localStorage.setItem("id",JSON.stringify(dt))
   }
+
+ ReporteFecha(){
+   let dia = this.fha.day
+   let mes = this.fha.month
+   let año = this.fha.year
+   this.fecha = dia +'-'+mes+'-'+año
+   let idD = parseInt(this.idDoctor)
+  this.http.get("https://finalapis.herokuapp.com/api/fecha/"+this.fecha+"/{id}?idDoctor="+idD+"").subscribe(data=>{
+   this.convert = data
+   console.log(this.convert)
+ })
+ }
+
 }

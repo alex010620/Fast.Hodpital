@@ -15,7 +15,8 @@ color="#0b2555"
       <h3>Fast <span>Hospital</span></h3>
     </div>
     <div class="right_area">
-      <a href="#" (click)="CerrarSesion()" class="logout_btn">Cerrar Sesión</a>
+      <ng-template style="background:  rgb(11, 37, 85);" #tipContent9>Salir del Sistema</ng-template>
+      <a href="#" style="font-size: 30px;" (click)="CerrarSesion()" [ngbTooltip]="tipContent9" class="logout_btn"><i class="fas fa-power-off"></i></a>
     </div>
   </header>
   <!--header area end-->
@@ -33,7 +34,7 @@ color="#0b2555"
       <a  style="cursor: pointer;" (click)="openBackDropCustom(cambiarNombreUsuario)"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
       <a style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
       <a style="cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
-      <a href="#"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
+      <a href="https://www.youtube.com/watch?v=i15wg1nQoxM&ab_channel=AlexCarreras"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
     </div>
   </div>
   <!--mobile navigation bar end-->
@@ -52,13 +53,97 @@ color="#0b2555"
     <a  style="cursor: pointer;" (click)="openBackDropCustom(cambiarNombreUsuario)"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
     <a style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
     <a style="cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
-    <a href="#"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
+    <a href="https://www.youtube.com/watch?v=i15wg1nQoxM&ab_channel=AlexCarreras"><i class="fas fa-address-card"></i><span>Acerca de</span></a>
   </div>
 
+   <!--sidebar end-->
+        <!--sidebar end-->
+<style>
+  .card #ki{
+    width: 23.2%;
+    height: 100px;
+    display: inline-block;
+    margin-right: 15px;
+    border-radius: 5px;
+  }
+  .hy1{
+    margin-left: 22px;
+    background: rgb(254, 193, 6);
+  }
+  h4{
+    padding: 0%;
+  }
+  .hy2{
+  background: rgb(41, 166, 67);
+  }
+  .hy3{
+  background: rgb(220, 53, 71);
+  }
+  .hy4{
+   background: rgb(22, 161, 185);
+  }
+
+</style>
+ <!--<div class="hy1" id="ki">
+         <label style="" for="">Pacientes Registrados</label>
+         <p>4</p>
+        </div>
+        <div class="hy2" id="ki">
+
+        </div>
+        <div class="hy3" id="ki">
+
+        </div>
+        <div class="hy4" id="ki">
+
+        </div>-->
 
   <div class="content">
-      <!--sidebar end-->
+      <div class="card mb-5">
+      <div class="lp">
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img src="../../../assets/banner-convenios-salud.jpg" alt="Random first slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>10 seconds between slides...</h3>
+              <p>This carousel uses customized default values.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img src="../../../assets/bg_banner_prod1.jpg" alt="Random second slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>La salud es el regalo mas grande.</h3>
+              <p>Cuidate, Amate, Protegete y protege a los tuyos...</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img src="../../../assets/ovv4cxrrqqhsdluxgqmsrofth16p34xfscr3tty7xo.png"  alt="Random third slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>No keyboard...</h3>
+              <p>This carousel uses customized default values.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img src="../../../assets/fcoT6UR0XZqEm_00cClIKQ.png" alt="Random fourth slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>Por favor, No salgas si no es necesario.</h3>
+              <p>Cuidate y cuida a toda tu familia.</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+      </div>
+
     <div class="card">
+      <div *ngIf="ocurtar" class="cerrar">
       <h2>Pacientes Pertenecientes</h2>
       <div id="cajas" class="B">
       <table class="table table-striped">
@@ -96,6 +181,12 @@ color="#0b2555"
       </table>
     </div>
     </div>
+  </div>
+  <div *ngIf="muestra" style="background: rgb(220, 53, 71);" class="card">
+    <div style="height: 240px; display: flex; justify-content: center; align-items: center; font-size: 25px;" class="alert alert-danger" role="alert">
+      Dr/a.{{NombreLogin}}, Usted no Cuenta con Pacientes Registrados.
+    </div>
+  </div>
   </div>
 
   <!--<script type="text/javascript">

@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AyudaComponent } from './componentes/ayuda/ayuda.component';
 import { NosotrosComponent } from './componentes/nosotros/nosotros.component';
 import { MantenimientoComponent } from './componentes/mantenimiento/mantenimiento.component';
+
 @NgModule({
   declarations: [
     AppComponent,

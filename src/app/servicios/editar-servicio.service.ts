@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class EditarServicioService {
+  toasts: any[] = [];
   private objectSource = new BehaviorSubject<{}>({});
   $getObjectSource = this.objectSource.asObservable();
 
@@ -16,6 +17,14 @@ export class EditarServicioService {
   }
   enviarDatosEditar(data:any){
     this.objectSourceEditar.next(data)
+  }
+
+  show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+    this.toasts.push({ textOrTpl, ...options });
+  }
+
+  remove(toast) {
+    this.toasts = this.toasts.filter(t => t !== toast);
   }
 
 }

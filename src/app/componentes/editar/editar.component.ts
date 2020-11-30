@@ -79,7 +79,7 @@ Foto="../../../assets/man.png"
      this.Sangre = this.globales.Tsangre
      this.sexo = this.globales.sexo
      this.zodiaco = this.globales.zodiaco
-     this.Foto = this.globales.fotoP
+     this.CapturaImagen = this.globales.fotoP
      if (this.sexo=="Masculino") {
       this.Abatar="assets/bussiness-man.png"
     } else {
@@ -122,7 +122,7 @@ Foto="../../../assets/man.png"
      this.Sangre = gf.Tsangre
      this.sexo = gf.sexo
      this.zodiaco = gf.zodiaco
-     this.Foto = gf.fotoP
+     this.CapturaImagen = gf.fotoP
      this.http.get("https://finalapis.herokuapp.com/api/SeleccionarConsulta/"+this.idPaciente+"").subscribe(data=>{
       this.DatosCita = data
        });
@@ -195,9 +195,10 @@ cd(){
   }
 
   ActualizarDatosPacientes(){
-   this.http.get("https://finalapis.herokuapp.com/api/ActualizarPaciente/"+this.idPaciente+"/"+this.cedula+"/Archivo/"+this.nombreP+"/"+this.apellidoP+"/"+this.Sangre+"/"+this.email+"/"+this.sexo+"/"+this.FechaNacimiento+"/"+this.Alergias+"/"+this.zodiaco+"/").subscribe(data=>{
+   this.http.put("https://finalapis.herokuapp.com/api/ActualizarPaciente/"+this.idPaciente+"/"+this.cedula+"/"+this.nombreP+"/"+this.apellidoP+"/"+this.Sangre+"/"+this.email+"/"+this.sexo+"/"+this.FechaNacimiento+"/"+this.Alergias+"/"+this.zodiaco+"",{foto:this.CapturaImagen}).subscribe(data=>{
     this.Valor = data;
     alert(this.Valor.respuesta)
+    window.location.reload()
    })
   }
   tenporal(id){

@@ -73,15 +73,15 @@
       <Label class="ml-3">Selecione la fecha</Label>
       <form>
         <div style="width: 315px;" class="form-group ml-3">
-          <div class="input-group">
-            <input id="dateOfBirth" class="form-control" [(ngModel)]="model2" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div id="txt" class="input-group mb-4">
+            <input id="dateOfBirth" [(ngModel)]="fha"  class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
             </div>
           </div>
         </div>
       </form>
-      <button class="btn btn-success mb-2">Buscar</button>
+      <button (click)="ReporteFecha()" class="btn btn-success mb-2">Buscar</button>
       <div id="cajas" class="B">
       <table class="table table-striped">
         <thead>
@@ -96,14 +96,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">Alex</th>
-            <td>11-23-2020</td>
-            <td>Dolor de Cabeza</td>
-            <td>0000023332</td>
-            <td>500</td>
-            <td>Faringitis</td>
-            <td>Hacer estudios</td>
+          <tr *ngFor="let i of convert">
+            <th scope="row">{{i.Paciente}}</th>
+            <td>{{i.Fecha}}</td>
+            <td>{{i.Motivo_Consulta}}</td>
+            <td>{{i.Numero_Seguro}}</td>
+            <td>{{i.Monto_Pagado}}</td>
+            <td>{{i.Diagnostico}}</td>
+            <td>{{i.Nota}}</td>
           </tr>
         </tbody>
       </table>

@@ -10,15 +10,15 @@ import { ReporteComponent } from './componentes/reporte/reporte.component';
 
 
 const app_routes: Routes= [
+  {path: 'login', component: LoginComponent },
+  {path: 'home', component: HomeComponent},
+  {path: 'editar', component: EditarComponent },
+  {path: 'registro', component: RegistroComponent},
+  {path: 'reporte', component: ReporteComponent},
+  {path: 'ayuda', component: AyudaComponent},
+  {path: 'nosotros', component: NosotrosComponent},
   {path: 'mantenimiento', component: MantenimientoComponent},
-  //{path: 'login', component: LoginComponent },
-  //{path: 'home', component: HomeComponent},
-  //{path: 'editar', component: EditarComponent },
-  //{path: 'registro', component: RegistroComponent},
-  //{path: 'reporte', component: ReporteComponent},
-  //{path: 'ayuda', component: AyudaComponent},
-  //{path: 'nosotros', component: NosotrosComponent},
-  {path: '**', pathMatch: 'full', redirectTo: 'mantenimiento'},
+  {path: '**', pathMatch: 'full', redirectTo: 'login'},
 ]
 
 export const app_routing = RouterModule.forRoot(app_routes);

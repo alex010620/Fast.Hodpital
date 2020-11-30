@@ -8,7 +8,8 @@
     <div class="left_area">
       <h3>Fast <span>Hospital</span></h3>
     </div>
-  <h3 style="display: inline; margin-left: 35%; color: white; font-weight: bold;">Edicion Abierta Para <span style="color:  rgb(0, 188, 196); font-weight: bold;">{{NombreApellido}}</span></h3>
+    <h3 style="display: inline; margin-left: 35%; color: white; font-weight: bold;">Edicion Abierta Para <span
+        style="color:  rgb(0, 188, 196); font-weight: bold;">{{NombreApellido}}</span></h3>
   </header>
   <!--header area end-->
   <!--mobile navigation bar start-->
@@ -20,7 +21,7 @@
     <div class="mobile_nav_items">
       <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
       <a href="#"><i class="fas fa-users"></i><span>Nosotros</span></a>
-      <a  style=" cursor: pointer;"  (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
+      <a style=" cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
     </div>
   </div>
   <!--mobile navigation bar end-->
@@ -32,103 +33,125 @@
       <h4>Dr.{{nombreDoctor}}</h4>
     </div>
     <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
-    <a  style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
-    <a  style=" cursor: pointer;"  (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
+    <a style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
+    <a style=" cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
   </div>
   <!--sidebar end-->
   <style>
-    #tex{
-     width: 320px;
+    #tex {
+      width: 320px;
     }
-    #lbl{
+
+    #lbl {
       display: none;
 
     }
+
   </style>
   <div class="content">
     <div class="card mb-5">
       <div style="display: inline;">
         <ng-template style="background:  rgb(11, 37, 85);" #tipContent6>Abrir Edicion</ng-template>
-        <label style="width: 40px; " (click)="ocurtar()" id="d"(click)="mos=!mos" [ngbTooltip]="tipContent6" (click)="mostr=!mostr"  class="btn btn-success mt-2 mr-2 ml-2" for=""><i class="fas fa-edit"></i></label>
-        <div id="e" style=" width: 125px; padding-right: 0;" >
+        <label style="width: 40px; " (click)="ocurtar()" id="d" (click)="mos=!mos" [ngbTooltip]="tipContent6"
+          (click)="mostr=!mostr" class="btn btn-success mt-2 mr-2 ml-2" for=""><i class="fas fa-edit"></i></label>
+        <div id="e" style=" width: 250px; padding-right: 0;">
           <ng-template style="background:  rgb(11, 37, 85);" #tipContent7>Cerrar Edicion</ng-template>
-          <label  style="width: 40px;" (click)="ocurtacion()" (click)="mos=!mos" [ngbTooltip]="tipContent7" (click)="mostr=!mostr"  class="btn btn-danger mt-2 mr-2 ml-2" for=""><i class="fas fa-times"></i></label>
-          <ng-template style="background:  rgb(11, 37, 85);" #tipContent8>Guardar Edicion</ng-template>
-          <label  style="width: 40px;" (click)=" ActualizarDatosPacientes()"  [ngbTooltip]="tipContent8" class="btn btn-primary mt-2 mr-2 ml-2" for=""><i class="fas fa-check"></i></label>
+          <label style="width: 40px;" (click)="ocurtacion()" (click)="mos=!mos" [ngbTooltip]="tipContent7"
+            (click)="mostr=!mostr" class="btn btn-danger mt-2 mr-2 ml-2" for=""><i class="fas fa-times"></i></label>
+          <ng-template style="background:   rgb(41, 166, 67)" #tipContent8>Guardar Edicion</ng-template>
+          <label style="width: 40px; background:   rgb(41, 166, 67)" (click)=" ActualizarDatosPacientes()"
+            [ngbTooltip]="tipContent8" class="btn btn-primary mt-2 mr-2 ml-2" for=""><i
+              class="fas fa-check"></i></label>
+          <ng-template style="background: rgb(254, 193, 6)" #tipContent10>Abrir Camara</ng-template>
+          <label style="width: 40px; background: rgb(254, 193, 6)" (click)="toggleWebcam();" (click)="opening(camara)"
+            [ngbTooltip]="tipContent10" class="btn btn-primary mt-2 mr-2 ml-2" for=""><i
+              class="fas fa-camera"></i></label>
+           <input  type="file" (change)="onChange($event)" style="width: 40px; color: transparent;" name="" id="">
+
+
         </div>
       </div>
-    <div id="cajas" class="A">
-      <img class="mt-4 ml-2 mr-2" src="{{Foto}}" width="200" height="200" alt="">
-      <div style="background: rgb(0, 188, 196); width: 30.33%; display: block; height:250px;" class="D">
-        <label class="mt-2" for=""><b>Cedula</b></label>
-        <label style="display: block;" *ngIf="mostr" for="">{{cedula}}</label>
-        <input *ngIf="mos" [(ngModel)]="cedula" class="form-control mb-1" type="text" name="cedula" id="tex">
-        <label  for=""><b>Email</b></label>
-        <label  style="display: block;" *ngIf="mostr" for="">{{email}}</label>
-        <input *ngIf="mos" [(ngModel)]="email" class="form-control mb-1" type="text" name="email" id="tex">
-        <label for=""><b>Fecha de nacimiento</b></label><br>
-        <label *ngIf="mostr" for="">{{FechaNacimiento}}</label>
-        <input *ngIf="mos" [(ngModel)]="FechaNacimiento" class="form-control" type="text" name="FechaNacimiento" id="tex">
+      <div id="cajas" class="A">
+        <img class="mt-4 ml-2 mr-2" src="{{CapturaImagen}}" width="200" height="200" alt="">
+        <div style="background: rgb(0, 188, 196); width: 30.33%; display: block; height:250px;" class="D">
+          <label class="mt-2" for=""><b>Cedula</b></label>
+          <label style="display: block;" *ngIf="mostr" for="">{{cedula}}</label>
+          <input *ngIf="mos" [(ngModel)]="cedula" class="form-control mb-1" type="text" name="cedula" id="tex">
+          <label for=""><b>Email</b></label>
+          <label style="display: block;" *ngIf="mostr" for="">{{email}}</label>
+          <input *ngIf="mos" [(ngModel)]="email" class="form-control mb-1" type="text" name="email" id="tex">
+          <label for=""><b>Fecha de nacimiento</b></label><br>
+          <label *ngIf="mostr" for="">{{FechaNacimiento}}</label>
+          <input *ngIf="mos" [(ngModel)]="FechaNacimiento" class="form-control" type="text" name="FechaNacimiento"
+            id="tex">
+        </div>
+        <div id="cajas" style="background:   rgb(0, 188, 196); display: block; width: 33.33%; height:250px;" class="C">
+          <label style="display: block;" class="mt-2 ml-3" for=""><b>Tipo de Sangre</b></label>
+          <label *ngIf="mostr" style="display: block;" class="ml-3" for="">{{Sangre}}</label>
+          <input *ngIf="mos" [(ngModel)]="Sangre" class="form-control mb-1 ml-3" type="text" name="Sangre" id="tex">
+          <label style="display: block;" class="ml-3" for=""><b>Alergias</b></label>
+          <label *ngIf="mostr" style="display: block;" class="ml-3" for="">{{Alergias}}</label>
+          <input *ngIf="mos" [(ngModel)]="Alergias" class="form-control mb-1 ml-3" type="text" name="Alergias" id="tex">
+          <label *ngIf="mos" style="display: block;" class="ml-3" for=""><b>Sexo</b></label>
+          <input *ngIf="mos" [(ngModel)]="sexo" class="form-control mb-1 ml-3" type="text" name="sexo" id="tex">
+        </div>
+        <div style="background:  rgb(0, 188, 196); display: block; width: 33.33%; height:250px;" class="cajas">
+          <label *ngIf="mos" style="display: block;" class="ml-3 mt-2" for=""><b>Nombre</b></label>
+          <input *ngIf="mos" [(ngModel)]="nombreP" class="form-control mb-1 ml-3" type="text" name="nombreP" id="tex">
+          <label *ngIf="mos" style="display: block;" class="ml-3" for=""><b>Apellido</b></label>
+          <input *ngIf="mos" [(ngModel)]="apellidoP" class="form-control mb-1 ml-3" type="text" name="apellidoP"
+            id="tex">
+          <label *ngIf="mos" style="display: block;" class="ml-3" for=""><b>Zodiaco</b></label>
+          <input *ngIf="mos" [(ngModel)]="zodiaco" class="form-control mb-1 ml-3" type="text" name="zodiaco" id="tex">
+        </div>
       </div>
-      <div id="cajas" style="background:   rgb(0, 188, 196); display: block; width: 33.33%; height:250px;"  class="C">
-        <label  style="display: block;" class="mt-2 ml-3" for=""><b>Tipo de Sangre</b></label>
-        <label  *ngIf="mostr" style="display: block;" class="ml-3" for="">{{Sangre}}</label>
-        <input *ngIf="mos" [(ngModel)]="Sangre" class="form-control mb-1 ml-3" type="text" name="Sangre" id="tex">
-        <label  style="display: block;"  class="ml-3" for=""><b>Alergias</b></label>
-        <label  *ngIf="mostr" style="display: block;"  class="ml-3" for="">{{Alergias}}</label>
-        <input *ngIf="mos" [(ngModel)]="Alergias" class="form-control mb-1 ml-3" type="text" name="Alergias" id="tex">
-        <label *ngIf="mos" style="display: block;"  class="ml-3" for=""><b>Sexo</b></label>
-        <input *ngIf="mos" [(ngModel)]="sexo" class="form-control mb-1 ml-3" type="text" name="sexo" id="tex">
-      </div>
-       <div style="background:  rgb(0, 188, 196); display: block; width: 33.33%; height:250px;" class="cajas">
-        <label *ngIf="mos" style="display: block;"  class="ml-3 mt-2" for=""><b>Nombre</b></label>
-        <input *ngIf="mos" [(ngModel)]="nombreP" class="form-control mb-1 ml-3" type="text" name="nombreP" id="tex">
-        <label *ngIf="mos" style="display: block;"  class="ml-3" for=""><b>Apellido</b></label>
-        <input *ngIf="mos" [(ngModel)]="apellidoP" class="form-control mb-1 ml-3" type="text" name="apellidoP" id="tex">
-        <label *ngIf="mos" style="display: block;"  class="ml-3" for=""><b>Zodiaco</b></label>
-        <input *ngIf="mos" [(ngModel)]="zodiaco" class="form-control mb-1 ml-3" type="text" name="zodiaco" id="tex">
-       </div>
-    </div>
     </div>
 
     <div class="card">
       <ng-template style="background:  rgb(11, 37, 85);" #tipContent4>Crear Consulta</ng-template>
-      <h2 style="padding-left: 60px;">Citas pertenecientes a {{NombreApellido}}</h2><label id="ed" [ngbTooltip]="tipContent4" (click)="open(citas)" class="btn btn-primary mt-2 mr-5 ml-2" for=""><i class="fas fa-calendar-plus"></i></label>
-    <div id="cajas" class="B">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Motivo Consulta</th>
-            <th scope="col">No.Seguro</th>
-            <th scope="col">Diagnostico</th>
-            <th scope="col">Foto</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let i of DatosCita">
-            <th scope="row">{{i.idConsulta}}</th>
-            <td>{{i.fecha}}</td>
-            <td>{{i.motivoConsulta}}</td>
-            <td>{{i.numeroSeguro}}</td>
-            <td>{{i.diagnostico}}</td>
-            <td>
-              <img src="{{i.evidencia}}" width="50" height="50" alt="">
-            </td>
-            <td>
-              <ng-template style="background:  rgb(11, 37, 85);" #tipContent>Actualizar Consulta</ng-template>
-              <button type="button" (click)="CargarDatosEdicionConsulta(i.idConsulta)"  [ngbTooltip]="tipContent" (click)="openActualizar(Actualizarcitas)" class="btn btn-success mr-2 mb-2"><i class="fas fa-edit"></i></button>
-              <ng-template style="background:  rgb(11, 37, 85);" #tipContent2>Vista General</ng-template>
-              <button type="button" (click)="CargarDatosEdicionConsulta(i.idConsulta)"  [ngbTooltip]="tipContent2" (click)="Vistageneral(VistaGeneral)" class="btn btn-warning mr-2 mb-2"><i class="fas fa-eye"></i></button>
-              <ng-template style="background:  rgb(11, 37, 85);" #tipContent3>Eliminar Consulta</ng-template>
-              <button type="button" (click)=" openVerticallyCentered(eliminar)"  [ngbTooltip]="tipContent3" (click)="tenporal(i.idConsulta)" class="btn btn-danger mb-2"><i class="fas fa-trash-alt"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <h2 style="padding-left: 60px;">Citas pertenecientes a {{NombreApellido}}</h2><label id="ed"
+        [ngbTooltip]="tipContent4" (click)="open(citas)" class="btn btn-primary mt-2 mr-5 ml-2" for=""><i
+          class="fas fa-calendar-plus"></i></label>
+      <div id="cajas" class="B">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Motivo Consulta</th>
+              <th scope="col">No.Seguro</th>
+              <th scope="col">Diagnostico</th>
+              <th scope="col">Foto</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of DatosCita">
+              <th scope="row">{{i.idConsulta}}</th>
+              <td>{{i.fecha}}</td>
+              <td>{{i.motivoConsulta}}</td>
+              <td>{{i.numeroSeguro}}</td>
+              <td>{{i.diagnostico}}</td>
+              <td>
+                <img src="{{i.evidencia}}" width="50" height="50" alt="">
+              </td>
+              <td>
+                <ng-template style="background:  rgb(11, 37, 85);" #tipContent>Actualizar Consulta</ng-template>
+                <button type="button" (click)="CargarDatosEdicionConsulta(i.idConsulta)" [ngbTooltip]="tipContent"
+                  (click)="openActualizar(Actualizarcitas)" class="btn btn-success mr-2 mb-2"><i
+                    class="fas fa-edit"></i></button>
+                <ng-template style="background:  rgb(11, 37, 85);" #tipContent2>Vista General</ng-template>
+                <button type="button" (click)="CargarDatosEdicionConsulta(i.idConsulta)" [ngbTooltip]="tipContent2"
+                  (click)="Vistageneral(VistaGeneral)" class="btn btn-warning mr-2 mb-2"><i
+                    class="fas fa-eye"></i></button>
+                <ng-template style="background:  rgb(11, 37, 85);" #tipContent3>Eliminar Consulta</ng-template>
+                <button type="button" (click)=" openVerticallyCentered(eliminar)" [ngbTooltip]="tipContent3"
+                  (click)="tenporal(i.idConsulta)" class="btn btn-danger mb-2"><i class="fas fa-trash-alt"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -166,7 +189,8 @@
       <p>¿Estás seguro de eliminar este registro?&hellip;</p>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-danger" (click)="modal.close('Close click')" (click)=" EliminarConsulta()">Eliminar</button>
+      <button class="btn btn-danger" (click)="modal.close('Close click')"
+        (click)=" EliminarConsulta()">Eliminar</button>
       <button type="button" class="btn btn-primary" (click)="modal.close('Close click')">Salir</button>
     </div>
   </ng-template>
@@ -175,54 +199,60 @@
   <ng-template #citas let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Crear consulta para {{NombreApellido}}</h4>
-      <button type="button" class="close" aria-label="Close"  (click)="modal.dismiss('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <div class="conten">
-      <div class="div1">
-        <label  for="">Fecha de la Cita</label><br>
-        <form>
-          <div class="form-group">
-            <div class="input-group">
-              <input [(ngModel)]="fc" id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+        <div class="div1">
+          <label for="">Fecha de la Cita</label><br>
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <input [(ngModel)]="fc" id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                  ngbDatepicker #dp="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i
+                      class="fas fa-calendar-alt"></i></button>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
-         <label for="">Motivo de la consulta</label>
-         <textarea   [(ngModel)]="MotivoConsulta" style="height: 45px;" class="form-control" name="MotivoConsulta" id="" cols="30" rows="10"></textarea>
+          </form>
+          <label for="">Motivo de la consulta</label>
+          <textarea [(ngModel)]="MotivoConsulta" style="height: 45px;" class="form-control" name="MotivoConsulta" id=""
+            cols="30" rows="10"></textarea>
           <br>
-        <label for="">Numero de Seguro</label><br>
-        <input [(ngModel)]="NumeroSeguro"  class="form-control" type="text" name="NumeroSeguro" id="">
-        <br>
-        <label for="">Monto Pagado</label><br>
-        <input  [(ngModel)]="MontoPagado"  class="form-control" type="text" name="MontoPagado" id="">
-        <br>
-        <label for="">Diagnostico</label><br>
-        <textarea [(ngModel)]="Diagnostico"   style="height: 45px;" class="form-control" name="Diagnostico" id="" cols="30" rows="10"></textarea>
-        <label class="mt-1" for="">Nota</label><br>
-        <textarea [(ngModel)]="NotaConsulta"   style="height: 45px;" class="form-control" name="NotaConsulta" id="" cols="30" rows="10"></textarea>
-      </div>
-      <div class="div2">
-      <div id="f" class="n">
-        <label for="">Tomar una Foto</label><br>
-        <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
-      </div>
-      <div class="n">
-        <label for="">Seleccionar un archivo</label>
-        <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
-      </div>
-      <br>
-        <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
-        <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
+          <label for="">Numero de Seguro</label><br>
+          <input [(ngModel)]="NumeroSeguro" class="form-control" type="text" name="NumeroSeguro" id="">
+          <br>
+          <label for="">Monto Pagado</label><br>
+          <input [(ngModel)]="MontoPagado" class="form-control" type="text" name="MontoPagado" id="">
+          <br>
+          <label for="">Diagnostico</label><br>
+          <textarea [(ngModel)]="Diagnostico" style="height: 45px;" class="form-control" name="Diagnostico" id=""
+            cols="30" rows="10"></textarea>
+          <label class="mt-1" for="">Nota</label><br>
+          <textarea [(ngModel)]="NotaConsulta" style="height: 45px;" class="form-control" name="NotaConsulta" id=""
+            cols="30" rows="10"></textarea>
+        </div>
+        <div class="div2">
+          <div id="f" class="n">
+            <label for="">Tomar una Foto</label><br>
+            <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
+          </div>
+          <div class="n">
+            <label for="">Seleccionar un archivo</label>
+            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
+          </div>
+          <br>
+          <img class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
+          <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i
+              class="far fa-trash-alt"></i> Reacer</button>
 
 
+        </div>
       </div>
-    </div>
     </div>
     <div class="modal-footer">
       <button (click)="CrearConsulta()" (click)="modal.close('Close click')" class="btn btn-success">Guardar</button>
@@ -230,169 +260,178 @@
     </div>
   </ng-template>
 
+  <!--Ventana de Actualizacion de citas-->
 
-<!--Ventana de Actualizacion de citas-->
-
-<ng-template #Actualizarcitas let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Actualizar cita del Dia {{FechaCita}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="limpiarActualizacion()" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="conten">
-    <div class="div1">
-      <label  for="">Fecha de la Cita</label><br>
-      <form>
-        <div class="form-group">
-          <div class="input-group">
-            <input id="dateOfBirth" [(ngModel)]="fc" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+  <ng-template #Actualizarcitas let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Actualizar cita del Dia {{FechaCita}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="limpiarActualizacion()"
+        (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="conten">
+        <div class="div1">
+          <label for="">Fecha de la Cita</label><br>
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <input id="dateOfBirth" [(ngModel)]="fc" class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                  ngbDatepicker #dp="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i
+                      class="fas fa-calendar-alt"></i></button>
+                </div>
+              </div>
             </div>
-          </div>
+          </form>
+          <label for="">Motivo de la consulta</label>
+          <textarea [(ngModel)]="MotivoConsulta" style="height: 45px;" class="form-control" name="MotivoConsulta" id=""
+            cols="30" rows="10"></textarea>
+          <br>
+          <label for="">Numero de Seguro</label><br>
+          <input [(ngModel)]="NumeroSeguro" class="form-control" type="text" name="NumeroSeguro" id="">
+          <br>
+          <label for="">Monto Pagado</label><br>
+          <input [(ngModel)]="MontoPagado" class="form-control" type="text" name="MontoPagado" id="">
+          <br>
+          <label for="">Diagnostico</label><br>
+          <textarea [(ngModel)]="Diagnostico" style="height: 45px;" class="form-control" name="Diagnostico" id=""
+            cols="30" rows="10"></textarea>
+          <label class="mt-1" for="">Nota</label><br>
+          <textarea [(ngModel)]="NotaConsulta" style="height: 45px;" class="form-control" name="NotaConsulta" id=""
+            cols="30" rows="10"></textarea>
         </div>
-      </form>
-       <label for="">Motivo de la consulta</label>
-       <textarea   [(ngModel)]="MotivoConsulta" style="height: 45px;" class="form-control" name="MotivoConsulta" id="" cols="30" rows="10"></textarea>
-        <br>
-      <label for="">Numero de Seguro</label><br>
-      <input [(ngModel)]="NumeroSeguro"  class="form-control" type="text" name="NumeroSeguro" id="">
-      <br>
-      <label for="">Monto Pagado</label><br>
-      <input  [(ngModel)]="MontoPagado"  class="form-control" type="text" name="MontoPagado" id="">
-      <br>
-      <label for="">Diagnostico</label><br>
-      <textarea [(ngModel)]="Diagnostico"   style="height: 45px;" class="form-control" name="Diagnostico" id="" cols="30" rows="10"></textarea>
-      <label class="mt-1" for="">Nota</label><br>
-      <textarea [(ngModel)]="NotaConsulta"   style="height: 45px;" class="form-control" name="NotaConsulta" id="" cols="30" rows="10"></textarea>
-    </div>
-    <div class="div2">
-    <div id="f" class="n">
-      <label for="">Tomar una Foto</label><br>
-      <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
-    </div>
-    <div class="n">
-      <label for="">Seleccionar un archivo</label>
-      <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
-    </div>
-    <br>
-    <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
-    <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
+        <div class="div2">
+          <div id="f" class="n">
+            <label for="">Tomar una Foto</label><br>
+            <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
+          </div>
+          <div class="n">
+            <label for="">Seleccionar un archivo</label>
+            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
+          </div>
+          <br>
+          <img class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
+          <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i
+              class="far fa-trash-alt"></i> Reacer</button>
 
+        </div>
+      </div>
     </div>
-  </div>
-  </div>
-  <div class="modal-footer">
-    <button (click)="ActualizarConsulta()" (click)="modal.close('Close click')" class="btn btn-success">Guardar</button>
-    <button type="button" class="btn btn-danger" (click)="limpiarActualizacion()" (click)="modal.close('Close click')">Cancelar</button>
-  </div>
-</ng-template>
-
-<!--Fin de la Ventana-->
-
-<!--Ventana vista general-->
-<ng-template #VistaGeneral let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Vista General de la consulta del Dia {{FechaCita}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="limpiarActualizacion()" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="conten">
-    <div class="div6">
-      <label  for="">Fecha de la Cita</label><br>
-      <input style="font-weight: bold;" [disabled]="text1" [ngModel]="FechaCita"  class="form-control" type="text" name="FechaCita" id="">
-       <br>
-       <label for="">Motivo de la consulta</label>
-       <textarea style="font-weight: bold;" [disabled]="text1"  [ngModel]="MotivoConsulta" style="height: 45px;" class="form-control" name="MotivoConsulta" id="" cols="30" rows="10"></textarea>
-        <br>
-      <label for="">Numero de Seguro</label><br>
-      <input style="font-weight: bold;" [disabled]="text1" [ngModel]="NumeroSeguro"  class="form-control" type="text" name="NumeroSeguro" id="">
-      <br>
-      <label for="">Monto Pagado</label><br>
-      <input style="font-weight: bold;" [disabled]="text1"  [ngModel]="MontoPagado"  class="form-control" type="text" name="MontoPagado" id="">
-      <br>
-      <label for="">Diagnostico</label><br>
-      <textarea style="font-weight: bold;" [disabled]="text1" [ngModel]="Diagnostico"   style="height: 45px;" class="form-control" name="Diagnostico" id="" cols="30" rows="10"></textarea>
+    <div class="modal-footer">
+      <button (click)="ActualizarConsulta()" (click)="modal.close('Close click')"
+        class="btn btn-success">Guardar</button>
+      <button type="button" class="btn btn-danger" (click)="limpiarActualizacion()"
+        (click)="modal.close('Close click')">Cancelar</button>
     </div>
-    <div  class="div2">
-      <label for="">Nota</label><br>
-      <textarea style="font-weight: bold;" [disabled]="text1" [ngModel]="NotaConsulta"   style="height: 45px;" class="form-control" name="NotaConsulta" id="" cols="30" rows="10"></textarea>
-      <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="370" alt="">
+  </ng-template>
 
+  <!--Fin de la Ventana-->
+
+  <!--Ventana vista general-->
+  <ng-template #VistaGeneral let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Vista General de la consulta del Dia {{FechaCita}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="limpiarActualizacion()"
+        (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-success">Guardar</button>
-    <button type="button" class="btn btn-danger" (click)="limpiarActualizacion()" (click)="modal.close('Close click')">Cancelar</button>
-  </div>
-</ng-template>
+    <div class="modal-body">
+      <div class="conten">
+        <div class="div6">
+          <label for="">Fecha de la Cita</label><br>
+          <input style="font-weight: bold;" [disabled]="text1" [ngModel]="FechaCita" class="form-control" type="text"
+            name="FechaCita" id="">
+          <br>
+          <label for="">Motivo de la consulta</label>
+          <textarea style="font-weight: bold;" [disabled]="text1" [ngModel]="MotivoConsulta" style="height: 45px;"
+            class="form-control" name="MotivoConsulta" id="" cols="30" rows="10"></textarea>
+          <br>
+          <label for="">Numero de Seguro</label><br>
+          <input style="font-weight: bold;" [disabled]="text1" [ngModel]="NumeroSeguro" class="form-control" type="text"
+            name="NumeroSeguro" id="">
+          <br>
+          <label for="">Monto Pagado</label><br>
+          <input style="font-weight: bold;" [disabled]="text1" [ngModel]="MontoPagado" class="form-control" type="text"
+            name="MontoPagado" id="">
+          <br>
+          <label for="">Diagnostico</label><br>
+          <textarea style="font-weight: bold;" [disabled]="text1" [ngModel]="Diagnostico" style="height: 45px;"
+            class="form-control" name="Diagnostico" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div class="div2">
+          <label for="">Nota</label><br>
+          <textarea style="font-weight: bold;" [disabled]="text1" [ngModel]="NotaConsulta" style="height: 45px;"
+            class="form-control" name="NotaConsulta" id="" cols="30" rows="10"></textarea>
+          <img class="img mt-3" src="{{CapturaImagen}}" width="530" height="370" alt="">
 
-<!--Fin de la Ventana-->
-<style>
- .modal-body .ventana{
-    width: 100%;
-    height: 550px;
-    background: red;
-  }
-</style>
-<!--Ventana actualizar paciente-->
-<ng-template #ActualizarPaciente let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="ventana">
-
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-  </div>
-</ng-template>
-<!--Fin de la Ventana-->
+    <div class="modal-footer">
+      <button class="btn btn-success">Guardar</button>
+      <button type="button" class="btn btn-danger" (click)="limpiarActualizacion()"
+        (click)="modal.close('Close click')">Cancelar</button>
+    </div>
+  </ng-template>
+
+  <!--Fin de la Ventana-->
+  <style>
+    .modal-body .ventana {
+      width: 100%;
+      height: 550px;
+      background: red;
+    }
+
+  </style>
+  <!--Ventana actualizar paciente-->
+  <ng-template #ActualizarPaciente let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="ventana">
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+  <!--Fin de la Ventana-->
 
   <ng-template #camara let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title"><i class="fas fa-camera"></i>  Camara</h4>
+      <h4 class="modal-title" id="modal-basic-title"><i class="fas fa-camera"></i> Camara</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <div *ngIf="mostrar"  style="text-align:center">
+      <div *ngIf="mostrar" style="text-align:center">
 
-        <div >
-          <webcam [height]="500" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-                  [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-                  [videoOptions]="videoOptions"
-                  [imageQuality]="1"
-                  (cameraSwitched)="cameraWasSwitched($event)"
-                  (initError)="handleInitError($event)"
-          ></webcam>
+        <div>
+          <webcam [height]="500" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"></webcam>
         </div>
       </div>
 
     </div>
     <div style="text-align: center;" class="modal-footer">
-    <div  style="width: 100%; height: 50px; text-align: center;" class="ca">
-      <i  id="componet" (click)="d('Cross click')" (click)="triggerSnapshot();" class="fas fa-camera"></i><i id="componet1" (click)="d('Cross click')" (click)="mostrar=false" class="fas fa-sign-out-alt"></i>
-    </div>
+      <div style="width: 100%; height: 50px; text-align: center;" class="ca">
+        <i id="componet" (click)="d('Cross click')" (click)="triggerSnapshot();" class="fas fa-camera"></i><i
+          id="componet1" (click)="d('Cross click')" (click)="mostrar=false" class="fas fa-sign-out-alt"></i>
+      </div>
     </div>
   </ng-template>
 
 
 </body>
-
-
-
-
-
-

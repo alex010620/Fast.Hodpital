@@ -10,15 +10,16 @@ import {Subject} from 'rxjs';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { data } from 'jquery';
-
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { EditarServicioService } from '../../servicios/editar-servicio.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [NgbModalConfig, NgbModal]
+  providers: [NgbModalConfig, NgbModal,NgbCarouselConfig]
 })
 export class HomeComponent implements OnInit {
-
+  imagesy = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/1600/350`);
   salir = false;
   pacientes: any;
   nombre: any;
@@ -57,7 +58,10 @@ export class HomeComponent implements OnInit {
   FechaFinal;
   Valor;
   idPaciente;
-  constructor(private ServicioService:ServicioService,private spinner: NgxSpinnerService, private http:HttpClient, config: NgbModalConfig, private modalService: NgbModal, private router:Router) {
+  ocurtar =true
+  muestra=false
+  ov="hola"
+  constructor(configu: NgbCarouselConfig,public toastService: EditarServicioService,private ServicioService:ServicioService,private spinner: NgxSpinnerService, private http:HttpClient, config: NgbModalConfig, private modalService: NgbModal, private router:Router) {
     $(document).ready(function(){
       $('.nav_btn').click(function(){
         $('.mobile_nav_items').toggleClass('active');
@@ -66,7 +70,10 @@ export class HomeComponent implements OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
 
-
+    configu.interval = 1000;
+    configu.wrap = false;
+    configu.keyboard = false;
+    configu.pauseOnHover = false;
   }
 
   ngOnInit(): void {
@@ -76,7 +83,14 @@ export class HomeComponent implements OnInit {
       this.pacientes = this.datos.pacientes;
        this.NombreLogin = this.datos.Nombre
        this.sexo = this.datos.Sexo
-      console.log(this.datos);
+       if (this.pacientes==(0) || this.pacientes==undefined ) {
+        this.ocurtar = false
+        this.muestra = true
+      } else {
+       this.ocurtar = true
+       this.muestra = false
+      }
+      console.log(this.datos.pacientes);
     });
     if (this.sexo=="Masculino") {
       this.Abatar="assets/bussiness-man.png"
@@ -89,6 +103,8 @@ export class HomeComponent implements OnInit {
     });
    this.sping()
    this.recarga()
+
+
   }
   recarga(){
     var carga = JSON.parse(localStorage.getItem('sesion'))
@@ -101,6 +117,13 @@ export class HomeComponent implements OnInit {
       this.pacientes = this.datos.pacientes;
        this.NombreLogin = this.datos.Nombre
        this.sexo = this.datos.Sexo
+       if (this.pacientes==(0) || this.pacientes==undefined ) {
+        this.ocurtar = false
+        this.muestra = true
+      } else {
+       this.ocurtar = true
+       this.muestra = false
+      }
     });
     if (this.sexo=="Masculino") {
       this.Abatar="assets/bussiness-man.png"
@@ -294,10 +317,6 @@ readFile(file: File, subscriber: Subscriber<any>) {
   };
 }
 
-teporal(){
-
-}
-
 CrearConsulta(){
   let dia = this.fc.day
   let mes = this.fc.month
@@ -316,7 +335,17 @@ EliminarPacienteConsulta(){
     window.location.reload()
    });
 }
+showStandard() {
+  this.toastService.show('I am a standard toast');
+}
 
+showSuccess(mgs) {
+  this.toastService.show(mgs, { classname: 'bg-success text-light', delay: 10000 });
+}
+
+showDanger(dangerTpl) {
+  this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 15000 });
+}
 
 
 public showWebcam = true;
