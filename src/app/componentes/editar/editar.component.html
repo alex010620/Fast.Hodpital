@@ -145,7 +145,7 @@
                   (click)="Vistageneral(VistaGeneral)" class="btn btn-warning mr-2 mb-2"><i
                     class="fas fa-eye"></i></button>
                 <ng-template style="background:  rgb(11, 37, 85);" #tipContent3>Eliminar Consulta</ng-template>
-                <button type="button" (click)=" openVerticallyCentered(eliminar)" [ngbTooltip]="tipContent3"
+                <button type="button" (click)="Eliminacion()" [ngbTooltip]="tipContent3"
                   (click)="tenporal(i.idConsulta)" class="btn btn-danger mb-2"><i class="fas fa-trash-alt"></i></button>
               </td>
             </tr>
@@ -239,16 +239,16 @@
         <div class="div2">
           <div id="f" class="n">
             <label for="">Tomar una Foto</label><br>
-            <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
+            <button (click)="toggleWebcam();" id="b3" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
           </div>
           <div class="n">
             <label for="">Seleccionar un archivo</label>
-            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
+            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="b3">
           </div>
           <br>
           <img class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
-          <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i
-              class="far fa-trash-alt"></i> Reacer</button>
+          <button (click)="limpiar()" *ngIf="eliminar" id="bh" (click)="opening(camara)" class="btn btn-danger"><i
+              class="far fa-trash-alt"></i> Rehacer</button>
 
 
         </div>
@@ -306,15 +306,15 @@
         <div class="div2">
           <div id="f" class="n">
             <label for="">Tomar una Foto</label><br>
-            <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
+            <button (click)="toggleWebcam();" id="b3" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
           </div>
           <div class="n">
             <label for="">Seleccionar un archivo</label>
-            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
+            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="b3">
           </div>
           <br>
           <img class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
-          <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i
+          <button (click)="limpiar()" *ngIf="eliminar" id="bh" (click)="opening(camara)" class="btn btn-danger"><i
               class="far fa-trash-alt"></i> Reacer</button>
 
         </div>

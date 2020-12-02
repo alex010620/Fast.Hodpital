@@ -154,7 +154,7 @@ body{
     background: linear-gradient(90deg, rgba(11,37,85,1) 0%, rgba(0,188,196,1) 100%);
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
     transition: 0.5s;
     background-position: center;
     background-repeat: no-repeat;
@@ -350,6 +350,13 @@ margin-right: 4px;
   align-items: center;
   padding: 10px 20px;
 }
+.card #cajas{
+  display: block;
+  height: 100%;
+}
+#cajas .A{
+  margin-left: 30px;
+}
 
     .nav_bar .mobile_profile_image{
       width: 50px;
@@ -397,6 +404,82 @@ margin-right: 4px;
     .active{
       display: block;
     }
+}
+@media only screen and (max-width: 990px) {
+  .conten{
+    display: block;
+  }
+  .div1, .div2{
+    width: 100%;
+    margin: auto;
+  }
+  .div2{
+    height: 750px;
+  }
+  .img{
+    width: 100%;
+
+  }
+  webcam{
+    width: 100%;
+  }
+  #cajas .C{
+    display: block;
+  }
+  .card{
+    height: 100%;
+  }
+  #bh{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    justify-content: center;
+   align-items: center;
+   width: 100%;
+  }
+ .div2 #f{
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .div2 .n{
+    width: 100%;
+  }
+  #kp{
+    width: 100%;
+  }
+  #b3{
+    width: 100%;
+  }
+  .modal-body #ml{
+    width: 300px;
+  }
+
+}
+@media only screen and (max-width: 1300px) {
+  .img{
+    width: 100%;
+    height: 365px;
+  }
+  .div2{
+    height: 580px;
+  }
+  #cajas .C{
+    display: block;
+  }
+  .card{
+    height: 100%;
+  }
+  #bh{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    justify-content: center;
+   align-items: center;
+   width: 100%;
+  }
+ .modal-body #ml{
+    width: 300px;
+  }
 }
 
 

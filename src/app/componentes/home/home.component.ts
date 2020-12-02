@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { data } from 'jquery';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { EditarServicioService } from '../../servicios/editar-servicio.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
   VerificarCalave:string=""
   MensageCambioClave;
   fc;
+  Msg;
   FechaFinal;
   Valor;
   idPaciente;
@@ -148,7 +150,7 @@ export class HomeComponent implements OnInit {
 
 comprobar(verificar){
 if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaContrasena=="" || this.NuevaContrasena==undefined ) {
-  alert("Los campos no pueden estar vacios")
+  this.CamposVacios()
 } else {
  this.openVerticall(verificar)
 }
@@ -156,38 +158,46 @@ if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaCon
 
   CambirPass(){
     if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaContrasena=="" || this.NuevaContrasena==undefined ) {
-      alert("Los campos no pueden estar vacios")
+      this.CamposVacios()
     } else {
       if (this.clave == this.VerificarCalave) {
        if (this.VerificarCalave==""||this.VerificarCalave==undefined) {
-        alert("El campo de verificacion de la clave")
+        this.CamposVaciosPass()
        } else {
         this.http.get(" https://finalapis.herokuapp.com/api/ModClave/"+this.ViejaContrasena+"/"+this.idDoctor+"/"+this.NuevaContrasena+"").subscribe(data=>{
         this.MensageCambioClave=data
-        alert(this.MensageCambioClave.respuesta)
+        Swal.fire(
+          'Muy bien!',
+          this.MensageCambioClave.respuesta,
+          'success'
+        )
         });
        }
       } else {
-        alert("Las claves son incorrectas")
+        this.ClavesIncorrectas()
       }
     }
   }
 
 CambiarNombre(){
   if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaContrasena=="" || this.NuevaContrasena==undefined ) {
-    alert("Los campos no pueden estar vacios")
+    this.CamposVacios()
   } else {
     if (this.clave == this.VerificarCalave) {
      if (this.VerificarCalave==""||this.VerificarCalave==undefined) {
-      alert("El campo de verificacion de la clave")
+     this.CamposVaciosPass()
      } else {
       this.http.get(" https://finalapis.herokuapp.com/api/modificar/"+this.ViejaContrasena+"/"+this.NuevaContrasena+"/"+this.idDoctor+"").subscribe(data=>{
       this.MensageCambioClave=data
-      alert(this.MensageCambioClave.respuesta)
+      Swal.fire(
+        'Muy bien!',
+        this.MensageCambioClave.respuesta,
+        'success'
+      )
       });
      }
     } else {
-      alert("Las claves son incorrectas")
+     this.ClavesIncorrectas()
     }
   }
 }
@@ -220,7 +230,28 @@ irAReporte(){
  this.qwwer()
   this.router.navigate(['reporte'])
 }
+CamposVacios(){
+  Swal.fire(
+    'Vaya!',
+    'Los Campos de Incercion de Datos no Estar Vacios',
+    'error'
+  )
+}
 
+CamposVaciosPass(){
+  Swal.fire(
+    'Vaya!',
+    'El Campo de Verificacion de Contraseña no Puede Estar Vacio',
+    'error'
+  )
+}
+ClavesIncorrectas(){
+  Swal.fire(
+    'Vaya!',
+    'La Contraseña Digitada es Incorrecta',
+    'error'
+  )
+}
 qwwer(){
   let dt={
     id:this.idDoctor,
@@ -324,15 +355,16 @@ CrearConsulta(){
 this.FechaFinal =dia +'-'+mes+'-'+año
  this.http.post("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.CanbiarNombreVentana+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
    this.Valor = data;
-   alert(this.Valor.respuesta)
+   this.Msg=this.Valor.respuesta
+    this.MensageGuardado()
   })
 }
 
 EliminarPacienteConsulta(){
   this.http.delete("https://finalapis.herokuapp.com/api/EliminarPacienteConsulta/"+this.idPaciente+"").subscribe(data=>{
     this.Valor = data;
-    alert(this.Valor.respuesta)
-    window.location.reload()
+    this.Msg=this.Valor.respuesta
+    this.MensageGuardado()
    });
 }
 showStandard() {
@@ -346,6 +378,38 @@ showSuccess(mgs) {
 showDanger(dangerTpl) {
   this.toastService.show(dangerTpl, { classname: 'bg-danger text-light', delay: 15000 });
 }
+//Alertas
+MensageGuardado(){
+  Swal.fire({
+    title: 'Muy bien!',
+    text: ""+this.Msg+"!",
+    icon: 'success',
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+     window.location.reload()
+    }
+  })
+
+ }
+
+ Eliminacion(){
+  Swal.fire({
+    title: 'Eliminacion de Pacientes',
+    text: "Quieres eliminar este Paciente?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.EliminarPacienteConsulta()
+    }
+  })
+ }
+//Fin de las alerrtas
 
 
 public showWebcam = true;

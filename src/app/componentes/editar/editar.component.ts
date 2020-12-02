@@ -8,6 +8,7 @@ import { data } from 'jquery';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { observable, Observable, Subscriber } from 'rxjs';
 import {Subject} from 'rxjs';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
@@ -15,6 +16,7 @@ import {Subject} from 'rxjs';
 })
 export class EditarComponent implements OnInit {
   public isCollapsed = false;
+
   myimage: Observable<any>;
   globales:any
   idPaciente:any
@@ -51,6 +53,7 @@ boton=false
 boton2=true
 Valor;
 FechaFinal;
+Msg;
 fc;
 idConsulta;
 Foto="../../../assets/man.png"
@@ -175,9 +178,9 @@ cd(){
    this.FechaFinal =dia +'-'+mes+'-'+año
     this.http.post("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
       this.Valor = data;
-      alert(this.Valor.respuesta)
+      this.Msg=this.Valor.respuesta
+      this.MensageGuardado()
      })
-     window.location.reload()
    }
  // RECUERDA QUE LE CAMBIASTE A POST ANTERIORMENTE
    ActualizarConsulta(){
@@ -188,17 +191,16 @@ cd(){
   this.FechaFinal =dia +'-'+mes+'-'+año
    this.http.put("https://finalapis.herokuapp.com/api/ActualizarConsulta/"+this.idConsulta+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
      this.Valor = data;
-     alert(this.Valor.respuesta)
-
-     window.location.reload()
+     this.Msg=this.Valor.respuesta
+      this.MensageGuardado()
     });
   }
 
   ActualizarDatosPacientes(){
    this.http.put("https://finalapis.herokuapp.com/api/ActualizarPaciente/"+this.idPaciente+"/"+this.cedula+"/"+this.nombreP+"/"+this.apellidoP+"/"+this.Sangre+"/"+this.email+"/"+this.sexo+"/"+this.FechaNacimiento+"/"+this.Alergias+"/"+this.zodiaco+"",{foto:this.CapturaImagen}).subscribe(data=>{
     this.Valor = data;
-    alert(this.Valor.respuesta)
-    window.location.reload()
+    this.Msg=this.Valor.respuesta
+      this.MensageGuardado()
    })
   }
   tenporal(id){
@@ -207,9 +209,9 @@ cd(){
   EliminarConsulta(){
     this.http.delete("https://finalapis.herokuapp.com/api/EliminarConsulta/"+this.idConsulta+"").subscribe(data=>{
       this.Valor = data;
-      alert(this.Valor.respuesta)
+      this.Msg=this.Valor.respuesta
+      this.MensageGuardado()
      });
-     window.location.reload()
   }
 
   irHome(){
@@ -276,6 +278,39 @@ cd(){
     };
   }
 
+//Alertas
+ MensageGuardado(){
+  Swal.fire({
+    title: 'Muy bien!',
+    text: ""+this.Msg+"!",
+    icon: 'success',
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+     window.location.reload()
+    }
+  })
+
+ }
+
+ Eliminacion(){
+  Swal.fire({
+    title: 'Eliminacion de Conssulta',
+    text: "Quieres eliminar esta consulta?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Eliminar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.EliminarConsulta()
+    }
+  })
+ }
+//Fin de las alerrtas
+
   public showWebcam = true;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
@@ -334,4 +369,7 @@ cd(){
   public get nextWebcamObservable(): Observable<boolean|string> {
     return this.nextWebcam.asObservable();
   }
+
+
+
 }

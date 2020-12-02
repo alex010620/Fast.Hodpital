@@ -24,7 +24,13 @@ reporteFechas;
 fecha;
 fha;
 convert;
-  constructor(private router:Router, private http:HttpClient,private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) { }
+  constructor(private router:Router, private http:HttpClient,private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) {
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+   }
 
   ngOnInit(): void {
    this.idDoctor = localStorage.getItem('llave')

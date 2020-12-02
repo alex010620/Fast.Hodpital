@@ -82,6 +82,80 @@ color="#0b2555"
   .hy4{
    background: rgb(22, 161, 185);
   }
+  .colp{
+    width: 100%;
+    height: 500px;
+    background: gold;
+  }
+  .colp .xz{
+    width: 100%;
+    width: 100%;
+    height: 500px;
+  }
+  @media only screen and (max-width: 990px) {
+  .conten{
+    display: block;
+  }
+  .div1, .div2{
+    width: 100%;
+    margin: auto;
+  }
+  .div2{
+    height: 750px;
+  }
+  .img{
+    width: 100%;
+
+  }
+  webcam{
+    width: 100%;
+  }
+  #bh{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    justify-content: center;
+   align-items: center;
+   width: 100%;
+  }
+ .div2 #f{
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .div2 .n{
+    width: 100%;
+  }
+  #kp{
+    width: 100%;
+  }
+  #b3{
+    width: 100%;
+  }
+  .modal-body #ml{
+    width: 300px;
+  }
+
+}
+@media only screen and (max-width: 1300px) {
+  .img{
+    width: 100%;
+    height: 365px;
+  }
+  .div2{
+    height: 580px;
+  }
+  #bh{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    justify-content: center;
+   align-items: center;
+   width: 100%;
+  }
+ .modal-body #ml{
+    width: 300px;
+  }
+}
 
 </style>
  <!--<div class="hy1" id="ki">
@@ -104,7 +178,7 @@ color="#0b2555"
         <ngb-carousel>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-              <img src="../../../assets/banner-convenios-salud.jpg" alt="Random first slide">
+              <img src="../../../assets/banner-convenios-salud.jpg" style="max-width:100%;height:auto;" alt="Random first slide">
             </div>
             <div class="carousel-caption">
               <h3>10 seconds between slides...</h3>
@@ -113,7 +187,7 @@ color="#0b2555"
           </ng-template>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-              <img src="../../../assets/bg_banner_prod1.jpg" alt="Random second slide">
+              <img src="../../../assets/bg_banner_prod1.jpg " style="max-width:100%;height:auto;" alt="Random second slide">
             </div>
             <div class="carousel-caption">
               <h3>La salud es el regalo mas grande.</h3>
@@ -122,7 +196,7 @@ color="#0b2555"
           </ng-template>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-              <img src="../../../assets/ovv4cxrrqqhsdluxgqmsrofth16p34xfscr3tty7xo.png"  alt="Random third slide">
+              <img src="../../../assets/ovv4cxrrqqhsdluxgqmsrofth16p34xfscr3tty7xo.png" style="max-width:100%;height:auto;"  alt="Random third slide">
             </div>
             <div class="carousel-caption">
               <h3>No keyboard...</h3>
@@ -131,7 +205,7 @@ color="#0b2555"
           </ng-template>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-              <img src="../../../assets/fcoT6UR0XZqEm_00cClIKQ.png" alt="Random fourth slide">
+              <img src="../../../assets/fcoT6UR0XZqEm_00cClIKQ.png"  style="max-width:100%;height:auto;"alt="Random fourth slide">
             </div>
             <div class="carousel-caption">
               <h3>Por favor, No salgas si no es necesario.</h3>
@@ -172,7 +246,7 @@ color="#0b2555"
               <ng-template style="background:  rgb(11, 37, 85);" #tipContent>Editar Paciente</ng-template>
               <button (click)="editarP(datosP.idPaciente,datosP.CedulaPaciente,datosP.NombrePaciente,datosP.ApellidoPaciente,datosP.EmailPaciente,datosP.Foto,datosP.Fecha_NacimientoPaciente,datosP.Tipo_SangrePaciente,datosP.AlergiasPaciente,datosP.Zodiaco,idDoctor)" style="font-size: 15px;" type="button" [ngbTooltip]="tipContent" class="btn btn-outline-success mr-2 mb-2"><i class="fas fa-user-edit"></i></button>
               <ng-template style="background:  rgb(11, 37, 85);" #tipContent2>Eliminar Paciente</ng-template>
-              <button style="font-size: 15px;" type="button" class="btn btn-outline-danger mr-2 mb-2"  [ngbTooltip]="tipContent2" (click)="openVerticallyCentered(eliminar)" (click)="borrar(datosP.NombrePaciente, datosP.ApellidoPaciente,datosP.idPaciente)"><i class="fas fa-trash"></i></button>
+              <button style="font-size: 15px;" type="button" class="btn btn-outline-danger mr-2 mb-2"  [ngbTooltip]="tipContent2" (click)="Eliminacion()" (click)="borrar(datosP.NombrePaciente, datosP.ApellidoPaciente,datosP.idPaciente)"><i class="fas fa-trash"></i></button>
               <ng-template style="background:  rgb(11, 37, 85);" #tipContent3>Registrar Consulta</ng-template>
               <button style="font-size: 15px;" type="button" class="btn btn-outline-warning mb-2" [ngbTooltip]="tipContent3" (click)="nombres(datosP.NombrePaciente, datosP.ApellidoPaciente,datosP.idPaciente)" (click)="open(content)"><i class="fas fa-address-book"></i></button>
             </td>
@@ -235,16 +309,16 @@ color="#0b2555"
       </div>
       <div class="div2">
       <div id="f" class="n">
-        <label for="">Tomar una Foto</label><br>
-        <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
+        <label id="b1" for="">Tomar una Foto</label><br>
+        <button id="kp" (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
       </div>
       <div class="n">
         <label for="">Seleccionar un archivo</label>
-        <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="">
+        <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="b3">
       </div>
       <br>
         <img  class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
-        <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Reacer</button>
+        <button (click)="limpiar()" *ngIf="eliminar" id="bh" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i>   Rehacer</button>
 
 
       </div>
@@ -357,18 +431,19 @@ color="#0b2555"
       </button>
     </div>
     <div class="modal-body">
-      <div *ngIf="mostrar"  style="text-align:center">
+      <div class="colp">
+        <div *ngIf="mostrar"  style="text-align:center">
+            <webcam class="xz"  [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+                    [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+                    [videoOptions]="videoOptions"
+                    [imageQuality]="1"
+                    (cameraSwitched)="cameraWasSwitched($event)"
+                    (initError)="handleInitError($event)"
+            ></webcam>
 
-        <div >
-          <webcam [height]="500" [width]="700" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-                  [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-                  [videoOptions]="videoOptions"
-                  [imageQuality]="1"
-                  (cameraSwitched)="cameraWasSwitched($event)"
-                  (initError)="handleInitError($event)"
-          ></webcam>
         </div>
       </div>
+
 
     </div>
     <div style="text-align: center;" class="modal-footer">

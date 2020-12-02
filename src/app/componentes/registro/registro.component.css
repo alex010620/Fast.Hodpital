@@ -154,7 +154,7 @@ body{
     background: linear-gradient(90deg, rgba(11,37,85,1) 0%, rgba(0,188,196,1) 100%);
     background-position: center;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
     transition: 0.5s;
     background-position: center;
     background-repeat: no-repeat;
@@ -262,7 +262,7 @@ margin-right: 4px;
 .card #cajas{
   width: 100%;
   height: 250px;
-  display: flex;
+
 }
 .card .A{
   background: rgb(0, 188, 196);
@@ -381,6 +381,15 @@ margin-right: 4px;
 
     .active{
       display: block;
+    }
+   .card .cajas{
+      column-gap: 2em;
+      columns: 2;
+    }
+    @media only screen and (max-width: 990px) {
+      .card .caja{
+        display: block;
+      }
     }
 }
 

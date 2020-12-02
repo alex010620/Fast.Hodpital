@@ -3,6 +3,7 @@ import { ServicioService } from './../../servicios/servicio.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -35,14 +36,22 @@ export class LoginComponent implements OnInit {
 
   iniciar() {
     if (this.correo == '' || this.clave == '') {
-      alert('campos de login vacios')
+      Swal.fire(
+        'Vaya!',
+        'Los Campos de Inicio de Sesion estan Vacios',
+        'error'
+      )
     } else {
       this.Http.get("https://finalapis.herokuapp.com/api/iniciar/"+this.correo+"/"+this.clave+"").subscribe(data=>{
         this.convert = data;
         this.Sexo2 = this.convert.Sexo
         this.NombreD = this.convert.Nombre
       if (this.convert.Ok == false) {
-        alert("verifique sus datos")
+        Swal.fire(
+          'Vaya!',
+          'Al Parecer los Datos Ingresados son Incorrectos',
+          'warning'
+        )
       } else {
         var log={
           correo:this.correo,
@@ -61,12 +70,20 @@ export class LoginComponent implements OnInit {
 
   registrar(){
     if (this.nombre == '' || this.correo == '' || this.clave == '' || this.sexo == '') {
-      alert('campos de registro vacios')
+      Swal.fire(
+        'Vaya!',
+        'Los Campos de Registro estan Vacios',
+        'error'
+      )
     } else {
     this.Http.get("https://finalapis.herokuapp.com/api/crear/"+this.nombre+"/"+this.correo+"/"+this.clave+"/"+this.sexo+"").subscribe(data=>{
       console.log(this.sexo);
       this.convert = data;
-      alert(this.convert.respuesta)
+      Swal.fire(
+        'Muy bien!',
+        this.convert.respuesta,
+        'success'
+      )
   })
     }
   }

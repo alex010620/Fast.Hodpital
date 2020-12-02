@@ -6,6 +6,7 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import {NgbDateStruct, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { observable, Observable, Subscriber } from 'rxjs';
 import {Subject} from 'rxjs';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -33,6 +34,7 @@ export class RegistroComponent implements OnInit {
   ReorganizarFecha;
   Central;
   autoComplit;
+  Msg;
   Foto = "../../../assets/picture.png"
   constructor(private router:Router,private http:HttpClient, private modalService: NgbModal) {
 
@@ -94,12 +96,16 @@ export class RegistroComponent implements OnInit {
       this.autoComplit = data
       this.Nombre = this.autoComplit.Nombres
       this.apellido = this.autoComplit.Apellido1
-      this.Foto = this.autoComplit.foto
+      this.CapturaImagen = this.autoComplit.foto
     })
   }
   Registrar(){
     if (this.Nombre==""||this.Nombre==undefined||this.Cedula==""||this.Cedula==undefined||this.apellido==""||this.apellido==undefined||this.email==""||this.email==undefined) {
-      alert("No se puede hacer el registro si hay campos vacios.")
+      Swal.fire(
+        'Vaya!',
+        'No se puede hacer el registro si hay campos vacios.',
+        'error'
+      )
     } else {
       let dia = this.FechaNacimeinto.day
       let mes = this.FechaNacimeinto.month
@@ -109,12 +115,25 @@ export class RegistroComponent implements OnInit {
       this.Foto =""
      this.http.post("https://finalapis.herokuapp.com/api/Pacientes/"+this.idDoctor+"/"+this.Cedula+"/"+this.Nombre+"/"+this.apellido+"/"+this.Sangre+"/"+this.email+"/"+this.TSexo+"/"+this.ReorganizarFecha+"/"+this.alergias+"/"+this.Zodiaco+"",{foto:this.CapturaImagen}).subscribe(data=>{
      this.Central = data
-     alert(this.Central.respuesta)
-     window.location.reload()
+     this.Msg=this.Central.respuesta
+      this.MensageGuardado()
      })
     }
   }
+  MensageGuardado(){
+    Swal.fire({
+      title: 'Muy bien!',
+      text: ""+this.Msg+"!",
+      icon: 'success',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+       window.location.reload()
+      }
+    })
 
+   }
   qwwer(){
     let dt={
       id:this.idDoctor,
