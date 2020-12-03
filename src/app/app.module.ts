@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AyudaComponent } from './componentes/ayuda/ayuda.component';
 import { NosotrosComponent } from './componentes/nosotros/nosotros.component';
 import { MantenimientoComponent } from './componentes/mantenimiento/mantenimiento.component';
+import {SeguridadGuard} from './seguridad.guard'
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MantenimientoComponent } from './componentes/mantenimiento/mantenimient
     BrowserAnimationsModule
   ],
   providers: [
+    SeguridadGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -31,6 +31,9 @@ export class AyudaComponent implements OnInit {
     } else {
       this.Abatar="assets/businesswoman.png"
     }
+    if(this.nombreDoctor == undefined || this.nombreDoctor=="null", this.nombreDoctor==null){
+      this.router.navigate(['login'])
+      }
     this.user();
   }
   user(){
@@ -42,10 +45,11 @@ export class AyudaComponent implements OnInit {
     } else {
       this.Abatar="../../../assets/businesswoman.png"
     }
+    if(this.nombreDoctor == undefined || this.nombreDoctor=="",this.nombreDoctor =="null", this.nombreDoctor===null){
+      this.router.navigate(['login'])
+      }
   }
   irHome(){
-    localStorage.removeItem('id')
-    localStorage.removeItem('llave')
     this.router.navigate(['home'])
   }
 

@@ -39,6 +39,9 @@ convert;
    this.ReporteZodiacal()
    this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
    this.user()
+   if(this.idDoctor == undefined || this.idDoctor=="", this.idDoctor==null){
+    this.router.navigate(['login'])
+    }
   }
   user(){
     this.usuario = JSON.parse(localStorage.getItem('id'))
@@ -50,6 +53,9 @@ convert;
     } else {
       this.Abatar="assets/businesswoman.png"
     }
+    if(this.idDoctor == undefined || this.idDoctor=="", this.idDoctor==null){
+      this.router.navigate(['login'])
+      }
   }
   irAyuda(){
     this.router.navigate(['ayuda'])
@@ -89,8 +95,6 @@ readonly DELIMITER = '/';
 
 
   irHome(){
-    localStorage.removeItem('id')
-    localStorage.removeItem('llave')
     this.router.navigate(['home'])
   }
   irARegistro(){

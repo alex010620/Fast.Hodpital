@@ -348,6 +348,9 @@ font-weight: bold;
       display: block;
       width: calc(100% - 0%);
     }
+    #cajas .D{
+      width: 100%;
+    }
 
 .nav_bar{
   background: rgb(0, 188, 196);

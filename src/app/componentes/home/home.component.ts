@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   Diagnostico;
   NotaConsulta;
   clave;
-  correo;
+  correo=null;
   Abatar;
   sexo;
   ViejaContrasena:string=""
@@ -102,8 +102,6 @@ export class HomeComponent implements OnInit {
     });
    this.sping()
    this.recarga()
-
-
   }
   recarga(){
     var carga = JSON.parse(localStorage.getItem('sesion'))
@@ -281,8 +279,6 @@ qwwer(){
   }
 
   irHome(){
-    localStorage.removeItem('id')
-    localStorage.removeItem('llave')
     this.router.navigate(['home'])
   }
 
@@ -381,6 +377,21 @@ MensageGuardado(){
     title: 'Muy bien!',
     text: ""+this.Msg+"!",
     icon: 'success',
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+     window.location.reload()
+    }
+  })
+
+ }
+
+ NoLoguiado(){
+  Swal.fire({
+    title: 'Apceso Denegado',
+    text: "Al parecer no se encuentra Loguiado",
+    icon: 'error',
     confirmButtonColor: '#3085d6',
     confirmButtonText: 'Aceptar'
   }).then((result) => {

@@ -54,6 +54,7 @@ boton2=true
 Valor;
 FechaFinal;
 Msg;
+Capturar;
 fc;
 idConsulta;
 Foto="../../../assets/man.png"
@@ -82,6 +83,7 @@ Foto="../../../assets/man.png"
      this.Sangre = this.globales.Tsangre
      this.sexo = this.globales.sexo
      this.zodiaco = this.globales.zodiaco
+     this.Capturar = this.globales.fotoP
      this.CapturaImagen = this.globales.fotoP
      if (this.sexo=="Masculino") {
       this.Abatar="assets/bussiness-man.png"
@@ -100,6 +102,8 @@ Foto="../../../assets/man.png"
     });
     this.recarga()
     this.user()
+
+
   }
   user(){
     this.usuario = JSON.parse(localStorage.getItem('id'))
@@ -125,6 +129,7 @@ Foto="../../../assets/man.png"
      this.Sangre = gf.Tsangre
      this.sexo = gf.sexo
      this.zodiaco = gf.zodiaco
+     this.Capturar = gf.fotoP
      this.CapturaImagen = gf.fotoP
      this.http.get("https://finalapis.herokuapp.com/api/SeleccionarConsulta/"+this.idPaciente+"").subscribe(data=>{
       this.DatosCita = data
@@ -136,6 +141,7 @@ Foto="../../../assets/man.png"
       }
  }
 ocurtar(){
+
   document.getElementById('e').style.display="block"
   document.getElementById('d').style.display="none"
 }
@@ -171,16 +177,24 @@ cd(){
     this.NotaConsulta =""
   }
    CrearConsulta(){
-     this.cd()
-     let dia = this.fc.day
-     let mes = this.fc.month
-     let año = this.fc.year
-   this.FechaFinal =dia +'-'+mes+'-'+año
-    this.http.post("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
-      this.Valor = data;
-      this.Msg=this.Valor.respuesta
-      this.MensageGuardado()
-     })
+     if (this.fc == (0) || this.MotivoConsulta == undefined ||  this.MotivoConsulta =="" || this.NotaConsulta==undefined|| this.NotaConsulta =="") {
+      Swal.fire(
+        'Vaya!',
+        'Al parecer no lleno todos los campos requeridos!',
+        'warning'
+      )
+     } else {
+      this.cd()
+      let dia = this.fc.day
+      let mes = this.fc.month
+      let año = this.fc.year
+    this.FechaFinal =dia +'-'+mes+'-'+año
+     this.http.post("https://finalapis.herokuapp.com/api/Consulta/"+this.idPaciente+"/"+this.idDoctor+"/"+this.NombreApellido+"/"+this.FechaFinal+"/"+this.MotivoConsulta+"/"+this.NumeroSeguro+"/"+this.MontoPagado+"/"+this.Diagnostico+"/"+this.NotaConsulta+"",{foto:this.CapturaImagen}).subscribe(data=>{
+       this.Valor = data;
+       this.Msg=this.Valor.respuesta
+       this.MensageGuardado()
+      })
+     }
    }
  // RECUERDA QUE LE CAMBIASTE A POST ANTERIORMENTE
    ActualizarConsulta(){
@@ -215,8 +229,6 @@ cd(){
   }
 
   irHome(){
-    localStorage.removeItem('id')
-    localStorage.removeItem('llave')
     this.router.navigate(['home'])
   }
   openVerticallyCentered(eliminar) {
@@ -230,6 +242,7 @@ cd(){
   }
   open(citas) {
     this.modalService.open(citas, {size:'xl'});
+    this.CapturaImagen ="../../../assets/pacient.png"
   }
 
   openActualizar(Actualizarcitas) {

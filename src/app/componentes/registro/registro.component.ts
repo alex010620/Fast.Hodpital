@@ -59,10 +59,11 @@ export class RegistroComponent implements OnInit {
     } else {
       this.Abatar="assets/businesswoman.png"
     }
+    if(this.idDoctor == undefined || this.idDoctor=="", this.idDoctor==null){
+      this.router.navigate(['login'])
+      }
   }
   irHome(){
-    localStorage.removeItem('id')
-    localStorage.removeItem('llave')
     this.router.navigate(['home'])
   }
   irARegistro(){

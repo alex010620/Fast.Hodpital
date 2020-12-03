@@ -7,11 +7,12 @@ import { MantenimientoComponent } from './componentes/mantenimiento/mantenimient
 import { NosotrosComponent } from './componentes/nosotros/nosotros.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { ReporteComponent } from './componentes/reporte/reporte.component';
+import { SeguridadGuard } from './seguridad.guard';
 
 
 const app_routes: Routes= [
   {path: 'login', component: LoginComponent },
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate:[SeguridadGuard]},
   {path: 'editar', component: EditarComponent },
   {path: 'registro', component: RegistroComponent},
   {path: 'reporte', component: ReporteComponent},

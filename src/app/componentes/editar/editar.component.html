@@ -47,6 +47,7 @@
 
     }
 
+
   </style>
   <div class="content">
     <div class="card mb-5">
@@ -71,21 +72,22 @@
         </div>
       </div>
       <div id="cajas" class="A">
-        <img class="imgg mt-4 ml-2 mr-2" src="{{CapturaImagen}}"  alt="">
-        <div style="background: rgb(0, 188, 196); width: 30.33%; display: block; height:250px;" class="D">
-          <label class="mt-2" for=""><b>Cedula</b></label>
-          <label style="display: block;" *ngIf="mostr" for="">{{cedula}}</label>
-          <input *ngIf="mos" [(ngModel)]="cedula" class="form-control mb-1" type="text" name="cedula" id="tex">
-          <label for=""><b>Email</b></label>
-          <label style="display: block;" *ngIf="mostr" for="">{{email}}</label>
-          <input *ngIf="mos" [(ngModel)]="email" class="form-control mb-1" type="text" name="email" id="tex">
-          <label for=""><b>Fecha de nacimiento</b></label><br>
-          <label *ngIf="mostr" for="">{{FechaNacimiento}}</label>
-          <input *ngIf="mos" [(ngModel)]="FechaNacimiento" class="form-control" type="text" name="FechaNacimiento"
+        <img *ngIf="mostr"  class="imgg mt-4 ml-2 mr-2" src="{{Capturar}}"  alt="">
+        <img *ngIf="mos"  class="imgg mt-4 ml-2 mr-2" src="{{CapturaImagen}}"  alt="">
+        <div style="background: rgb(0, 188, 196); width: 33.33%; display: block; height:250px;" class="D">
+          <label class="mt-2 ml-3" for=""><b>Cedula</b></label>
+          <label style="display: block; margin-left: 17px;" *ngIf="mostr" for="">{{cedula}}</label>
+          <input *ngIf="mos" [(ngModel)]="cedula" class="form-control mb-1 ml-3" type="text" name="cedula" id="tex">
+          <label class="ml-3" for=""><b>Email</b></label>
+          <label style="display: block; margin-left: 17px; width: 200%;" *ngIf="mostr" for="">{{email}}</label>
+          <input *ngIf="mos" [(ngModel)]="email" class="form-control mb-1 ml-3" type="text" name="email" id="tex">
+          <label class="ml-3"  style="width: 200%;" for=""><b>Fecha de nacimiento</b></label><br>
+          <label class="ml-3" *ngIf="mostr" for="">{{FechaNacimiento}}</label>
+          <input *ngIf="mos" [(ngModel)]="FechaNacimiento" class="form-control ml-3" type="text" name="FechaNacimiento"
             id="tex">
         </div>
         <div id="cajas" style="background:   rgb(0, 188, 196); display: block; width: 33.33%; height:250px;" class="C">
-          <label style="display: block;" class="mt-2 ml-3" for=""><b>Tipo de Sangre</b></label>
+          <label style="display: block; width: 200%;" class="mt-2 ml-3" for=""><b>Tipo de Sangre</b></label>
           <label *ngIf="mostr" style="display: block;" class="ml-3" for="">{{Sangre}}</label>
           <input *ngIf="mos" [(ngModel)]="Sangre" class="form-control mb-1 ml-3" type="text" name="Sangre" id="tex">
           <label style="display: block;" class="ml-3" for=""><b>Alergias</b></label>
@@ -232,8 +234,11 @@
           <textarea [(ngModel)]="Diagnostico" style="height: 45px;" class="form-control" name="Diagnostico" id=""
             cols="30" rows="10"></textarea>
           <label class="mt-1" for="">Nota</label><br>
-          <textarea [(ngModel)]="NotaConsulta" style="height: 45px;" class="form-control" name="NotaConsulta" id=""
+          <textarea [(ngModel)]="NotaConsulta" style="height: 45px;" class="form-control" name="NotaConsulta" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required
             cols="30" rows="10"></textarea>
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div>
         </div>
         <div class="div2">
           <div id="f" class="n">
@@ -254,7 +259,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button (click)="CrearConsulta()" (click)="modal.close('Close click')" class="btn btn-success">Guardar</button>
+      <button (click)="CrearConsulta()" class="btn btn-success">Guardar</button>
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cancelar</button>
     </div>
   </ng-template>
