@@ -8,7 +8,7 @@
     <div class="left_area">
       <h3>Fast <span>Hospital</span></h3>
     </div>
-    <h3 style="display: inline; margin-left: 35%; color: white; font-weight: bold;">Edicion Abierta Para <span
+    <h3 id="sude">Edicion Abierta Para <span
         style="color:  rgb(0, 188, 196); font-weight: bold;">{{NombreApellido}}</span></h3>
   </header>
   <!--header area end-->
@@ -66,13 +66,12 @@
           <label style="width: 40px; background: rgb(254, 193, 6)" (click)="toggleWebcam();" (click)="opening(camara)"
             [ngbTooltip]="tipContent10" class="btn btn-primary mt-2 mr-2 ml-2" for=""><i
               class="fas fa-camera"></i></label>
-           <input  type="file" (change)="onChange($event)" style="width: 40px; color: transparent;" name="" id="">
-
-
+              <ng-template style="background: rgb(254, 193, 6)" #tipContent15>Seleccionar una Foto</ng-template>
+              <span class="btn btn-default btn-file btn-primary"  [ngbTooltip]="tipContent15"><i class="fas fa-file-image"></i><input (change)="onChange($event)" type="file"></span>
         </div>
       </div>
       <div id="cajas" class="A">
-        <img class="mt-4 ml-2 mr-2" src="{{CapturaImagen}}" width="200" height="200" alt="">
+        <img class="imgg mt-4 ml-2 mr-2" src="{{CapturaImagen}}"  alt="">
         <div style="background: rgb(0, 188, 196); width: 30.33%; display: block; height:250px;" class="D">
           <label class="mt-2" for=""><b>Cedula</b></label>
           <label style="display: block;" *ngIf="mostr" for="">{{cedula}}</label>
@@ -242,8 +241,8 @@
             <button (click)="toggleWebcam();" id="b3" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
           </div>
           <div class="n">
-            <label for="">Seleccionar un archivo</label>
-            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="b3">
+            <label for="">Seleccionar un archivo</label><br>
+            <span id="b3" class="btn btn-default btn-file btn-primary"> Seleccionar una Foto <input (change)="onChange($event)" type="file"></span>
           </div>
           <br>
           <img class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
@@ -309,8 +308,8 @@
             <button (click)="toggleWebcam();" id="b3" (click)="opening(camara)" class="btn btn-primary">Abrir Camara</button>
           </div>
           <div class="n">
-            <label for="">Seleccionar un archivo</label>
-            <input class="btn btn-primary" (change)="onChange($event)" type="file" name="" id="b3">
+            <label for="">Seleccionar un archivo</label><br>
+            <span id="b3" class="btn btn-default btn-file btn-primary"> Seleccionar una Foto <input (change)="onChange($event)" type="file"></span>
           </div>
           <br>
           <img class="img mt-3" src="{{CapturaImagen}}" width="530" height="420" alt="">
@@ -385,6 +384,26 @@
       height: 550px;
       background: red;
     }
+    .btn-file {
+  position: relative;
+  overflow: hidden;
+  }
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+
+}
 
   </style>
   <!--Ventana actualizar paciente-->

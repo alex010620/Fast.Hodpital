@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { data } from 'jquery';
 import {NgbCalendar, NgbDateAdapter} from '@ng-bootstrap/ng-bootstrap'
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-reporte',
   templateUrl: './reporte.component.html',
@@ -112,15 +113,29 @@ readonly DELIMITER = '/';
   }
 
  ReporteFecha(){
-   let dia = this.fha.day
-   let mes = this.fha.month
-   let año = this.fha.year
-   this.fecha = dia +'-'+mes+'-'+año
-   let idD = parseInt(this.idDoctor)
-  this.http.get("https://finalapis.herokuapp.com/api/fecha/"+this.fecha+"/{id}?idDoctor="+idD+"").subscribe(data=>{
-   this.convert = data
-   console.log(this.convert)
- })
+   if(this.fha === undefined){
+    Swal.fire(
+      'Vaya!',
+      'Al parecer no selecciono una fecha. Seleccione una!',
+      'warning'
+    )
+  }else{
+    var dia = this.fha.day
+    var mes = this.fha.month
+    var año = this.fha.year
+    this.fecha = dia +'-'+mes+'-'+año
+    let idD = parseInt(this.idDoctor)
+   this.http.get("https://finalapis.herokuapp.com/api/fecha/"+this.fecha+"/{id}?idDoctor="+idD+"").subscribe(data=>{
+    this.convert = data
+    if(this.convert==(0)){
+      Swal.fire(
+        'Vaya!',
+        "No Pudimos Encontrar la Fecha del "+this.fecha+" en Nuestra Base de Datos, Verifique si es Correta!",
+        'warning'
+      )
+    }
+  })
+  }
  }
 
 }

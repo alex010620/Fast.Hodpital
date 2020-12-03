@@ -219,7 +219,7 @@ body{
   }
 
   header{
-    z-index: 1;
+    z-index: 999;
     position: fixed;
     background: rgb(11, 37, 85);
     padding: 20px;
@@ -471,5 +471,8 @@ body{
 
     .active{
       display: block;
+    }
+    .content .card h2{
+      height: 65px;
     }
 }

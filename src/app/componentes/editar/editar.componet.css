@@ -311,8 +311,16 @@ margin-right: 4px;
 .B::-webkit-scrollbar-track:active {
   background: #d4d4d4;
 }
-
-
+#sude{
+display: inline;
+ margin-left: 35%;
+ color: white;
+font-weight: bold;
+}
+.imgg{
+  width: 200px;
+  height: 200px;
+}
 
   /* Responsive CSS */
 
@@ -380,7 +388,14 @@ margin-right: 4px;
       background: rgb(0, 188, 196);
       display: none;
     }
-
+    .content .card h2{
+      height: 65px;
+    }
+  #cajas .imgg{
+    width: 60%;
+    margin-left: 40%;
+    margin: auto;
+   }
     .mobile_nav_items a{
       color: #fff;
       display: block;
@@ -479,6 +494,9 @@ margin-right: 4px;
   }
  .modal-body #ml{
     width: 300px;
+  }
+  #sude{
+    display: none;
   }
 }
 

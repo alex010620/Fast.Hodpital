@@ -61,30 +61,69 @@ color="#0b2555"
   }
   #cont2{
     background: rgb(17, 170, 12);
-
   }
+  #abc{
+    display: block;
+    width: 91%;
+  }
+  #Arh{
+  width: 91%;
+}
+.row{
+  border: solid 1px rgb(117, 117, 117);
+  border-radius: 10px;
+}
+.col{
+  border-left: 1px solid rgb(117, 117, 117);
+  border-radius: 10px;
+}
   @media only screen and (max-width: 990px) {
     .content{
-      height: 100vmax;
+      height: 100%;
+      margin: 0px;
       display: block;
+      background-position: center;
+    background-size: cover;
+    transition: 0.5s;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
       }
-      .card .caja{
-        display: block;
-        height: 100%;
-        height: 400px;
+  .card .row{
+    display: block;
+  }
 
-      }
-
-      .caja .con{
+      .row .col{
     width: 100%;
     height: 100%;
   }
   .caja #cont1{
     width: 100%;
   }
-  #txt{
-    width: 73%;
-    margin-left: 20px;
+.col #txt{
+    width: 100%;
+    justify-content: center;
+  }
+  #abc{
+    display: block;
+    width: 100%;
+  }
+  #Arh{
+  width: 100%;
+}
+  .img{
+  width: 100%;
+  height: 350px;
+  margin: 0px;
+  display: block;
+  }
+#brh{
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 30px;
+  }
+  #btg{
+    margin-bottom: 30px;
   }
     }
   #cont3{
@@ -94,24 +133,50 @@ color="#0b2555"
     width: 318px;
   }
 
+ #btg{
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+  .btn-file {
+  position: relative;
+  overflow: hidden;
+  }
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+
+}
+
 </style>
   <div class="content">
     <br>
     <div class="card">
       <h2> <i style="color:  rgb(28, 80, 177);" class="fas fa-plus"></i>   Registo de Pacientes</h2>
-     <div class="caja">
-      <div  class="con" id="cont1"><br>
-       <label class="ml-5" for="">Cedula</label><br>
-       <input (input)="autoCompletar($event)"  [(ngModel)]="Cedula" class="form-control ml-5" type="text" name="Cedula" placeholder="Escriba la Cedula..." id="txt"><br>
-       <label class="ml-5" for="">Nombre</label><br>
-       <input  [(ngModel)]="Nombre" class="form-control ml-5" type="text" name="Nombre" placeholder="Escriba el Nombre..." id="txt"><br>
-       <label class="ml-5" for="">Apellido</label><br>
-       <input  [(ngModel)]="apellido" class="form-control ml-5" type="text" name="apellido" placeholder="Escriba el Apellido..." id="txt"><br>
-       <label class="ml-5" for="">Email</label><br>
-       <input  [(ngModel)]="email" class="form-control ml-5" type="text" name="email" placeholder="Escriba el Email..." id="txt"><br>
+      <div class="container">
+     <div class="row">
+      <div  class="col" ><br>
+       <label  for="">Cedula</label><br>
+       <input (input)="autoCompletar($event)"  [(ngModel)]="Cedula" class="form-control" type="text" name="Cedula" placeholder="Escriba la Cedula..." id="txt"><br>
+       <label  for="">Nombre</label><br>
+       <input  [(ngModel)]="Nombre" class="form-control" type="text" name="Nombre" placeholder="Escriba el Nombre..." id="txt"><br>
+       <label  for="">Apellido</label><br>
+       <input  [(ngModel)]="apellido" class="form-control" type="text" name="apellido" placeholder="Escriba el Apellido..." id="txt"><br>
+       <label  for="">Email</label><br>
+       <input  [(ngModel)]="email" class="form-control" type="text" name="email" placeholder="Escriba el Email..." id="txt">
       </div>
-      <div class="con" id="cont2"><br>
-        <div class="ml-5 mb-3" id="txt">
+      <div class="col" ><br>
+        <div class="mb-4 " id="txt">
           <label  for="validationCustom04">Tipo de Sangre</label>
           <select [(ngModel)]="Sangre" (change)="LeerSangre()" class="custom-select" id="validationCustom04" required>
             <option selected disabled value="">Seleccione el Tipo de Sangre</option>
@@ -129,10 +194,10 @@ color="#0b2555"
             Please select a valid state.
           </div>
         </div>
-        <label class="ml-5" for="">Fecha de Nacimiento</label><br>
+        <label class="" for="">Fecha de Nacimiento</label><br>
         <form>
           <div class="form-group">
-            <div id="txt" class="input-group ml-5 mb-4">
+            <div id="txt" class="input-group mb-4">
               <input id="dateOfBirth" [(ngModel)]="FechaNacimeinto"  class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
@@ -140,7 +205,7 @@ color="#0b2555"
             </div>
           </div>
         </form>
-        <div class="ml-5 mb-3" id="txt">
+        <div class="mb-4" id="txt">
           <label  for="validationCustom04">Sexo</label>
           <select [(ngModel)]="TSexo" (change)="LeerSexo()" class="custom-select" id="validationCustom04" required>
             <option selected disabled value="">Seleccione el Sexo</option>
@@ -151,11 +216,11 @@ color="#0b2555"
             Please select a valid state.
           </div>
         </div>
-        <label class="ml-5" for="">Alergias</label><br>
-        <input [(ngModel)]="alergias" class="form-control ml-5" type="text" name="alergias" placeholder="Escriba las Alergias..." id="txt"><br>
+        <label for="">Alergias</label><br>
+        <input [(ngModel)]="alergias" class="form-control" type="text" name="alergias" placeholder="Escriba las Alergias..." id="txt">
       </div>
-      <div class="con" id="cont3"><br>
-        <div class="ml-5 mb-3" id="txt">
+      <div class="col"><br>
+        <div class="mb-3" id="txt">
           <label  for="validationCustom04">Zodiaco</label>
           <select [(ngModel)]="Zodiaco" (change)="LeerZodiaco()" class="custom-select" id="validationCustom04" required>
             <option selected disabled value="">Seleccione el Zodiaco</option>
@@ -176,14 +241,15 @@ color="#0b2555"
             Please select a valid state.
           </div>
         </div>
-        <label class="ml-5" for="">Foto</label><br>
-        <button (click)="toggleWebcam();" (click)="opening(camara)" class="btn btn-primary ml-5 mb-3">Abrir la Camara</button>
-        <input class="ml-5 mb-3" (change)="onChange($event)" type="file" name="" id="">
-          <img  class="img mt-3" src="{{CapturaImagen}}"style="margin-left: 140px;"  width="150" height="150" alt="">
-          <button (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+        <label class="" for="">Foto</label><br>
+        <button (click)="toggleWebcam();" id="abc" (click)="opening(camara)" class="btn btn-primary mb-3">Tomar una Foto</button>
+        <span id="Arh" class="btn btn-default btn-file btn-primary"> Seleccionar una Foto <input (change)="onChange($event)" type="file"></span>
+          <img  class="img mt-3 mb-3" src="{{CapturaImagen}}"  width="150" height="150" alt="">
+          <button  (click)="limpiar()" *ngIf="eliminar" (click)="opening(camara)" id="brh" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
       </div>
      </div>
-     <button (click)="Registrar()" class="btn btn-success mt-3">Guardar</button>
+     <button (click)="Registrar()" id="btg" class="btn btn-success w-100">Registrar</button>
+    </div>
     </div>
   </div>
 

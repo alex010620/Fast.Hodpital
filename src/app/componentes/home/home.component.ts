@@ -72,10 +72,7 @@ export class HomeComponent implements OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
 
-    configu.interval = 1000;
-    configu.wrap = false;
-    configu.keyboard = false;
-    configu.pauseOnHover = false;
+
   }
 
   ngOnInit(): void {
