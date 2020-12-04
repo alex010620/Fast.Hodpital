@@ -328,8 +328,13 @@ margin-right: 4px;
     .content{
       margin-left: 0;
       margin-top: 0;
-      padding: 10px 20px;
       transition: 0s;
+      background-position: center;
+      background-size: cover;
+      height: 100vmax;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     #check:checked ~ .content{
@@ -396,6 +401,9 @@ margin-right: 4px;
 
     .active{
       display: block;
+    }
+    .content .card h2{
+      height: 65px;
     }
 }
 

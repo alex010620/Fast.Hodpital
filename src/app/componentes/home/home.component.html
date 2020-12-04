@@ -30,7 +30,7 @@ color="#0b2555"
       <a style="cursor: pointer;" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
       <a style="cursor: pointer;"  (click)="irARegistro()"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
       <a style="cursor: pointer;"  (click)="irAReporte()"><i class="fas fa-table"></i><span>Reportes</span></a>
-      <a  style="cursor: pointer;" (click)=" openBackDropCustomClass(cambiarClave)"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
+      <a  style="cursor: pointer;" (click)=" openBackDropCustomClass(cambiarClave)"><i class="fas fa-unlock-alt"></i><span>Cambiar clave</span></a>
       <a  style="cursor: pointer;" (click)="openBackDropCustom(cambiarNombreUsuario)"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
       <a style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
       <a style="cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
@@ -41,7 +41,7 @@ color="#0b2555"
   <!--sidebar start-->
   <div class="sidebar">
     <div class="profile_info">
-      <img src="assets/bussiness-man.svg" class="profile_image" alt="" />
+      <img src="{{Abatar}}" class="profile_image" alt="" />
 
       <h4>Dr.{{NombreLogin}}</h4>
        <!--<img src="otro.png" class="profile_image" alt="">-->
@@ -49,7 +49,7 @@ color="#0b2555"
     <a style="cursor: pointer; background: rgb(11, 37, 85);" (click)="irHome()"><i class="fas fa-home"></i><span>Inicio</span></a>
     <a style="cursor: pointer;"  (click)="irARegistro()"><i class="fas fa-user-plus"></i><span>Registrar Pacientes</span></a>
     <a style="cursor: pointer;"  (click)="irAReporte()"><i class="fas fa-table"></i><span>Reportes</span></a>
-    <a  style="cursor: pointer;" (click)=" openBackDropCustomClass(cambiarClave)"><i class="fas fa-unlock-alt"></i><span>Cambir clave</span></a>
+    <a  style="cursor: pointer;" (click)=" openBackDropCustomClass(cambiarClave)"><i class="fas fa-unlock-alt"></i><span>Cambiar clave</span></a>
     <a  style="cursor: pointer;" (click)="openBackDropCustom(cambiarNombreUsuario)"><i class="fas fa-file-signature"></i><span>Cambiar nombre</span></a>
     <a style="cursor: pointer;" (click)="irNosotros()"><i class="fas fa-users"></i><span>Nosotros</span></a>
     <a style="cursor: pointer;" (click)="irAyuda()"><i class="fas fa-question"></i><span>Ayuda</span></a>
@@ -199,8 +199,8 @@ color="#0b2555"
               <img src="../../../assets/banner-convenios-salud.jpg" style="max-width:100%;height:auto;" alt="Random first slide">
             </div>
             <div class="carousel-caption">
-              <h3>10 seconds between slides...</h3>
-              <p>This carousel uses customized default values.</p>
+              <h3>La mejor y más eficiente farmacia está dentro de tu propio sistema</h3>
+              <p>Protegete...</p>
             </div>
           </ng-template>
           <ng-template ngbSlide>
@@ -217,8 +217,6 @@ color="#0b2555"
               <img src="../../../assets/ovv4cxrrqqhsdluxgqmsrofth16p34xfscr3tty7xo.png" style="max-width:100%;height:auto;"  alt="Random third slide">
             </div>
             <div class="carousel-caption">
-              <h3>No keyboard...</h3>
-              <p>This carousel uses customized default values.</p>
             </div>
           </ng-template>
           <ng-template ngbSlide>
@@ -343,7 +341,7 @@ color="#0b2555"
     </div>
     </div>
     <div class="modal-footer">
-      <button (click)="CrearConsulta()" (click)="modal.close('Close click')" class="btn btn-success">Guardar</button>
+      <button (click)="CrearConsulta()" class="btn btn-success">Guardar</button>
       <button type="button" class="btn btn-danger" (click)="modal.close('Close click')">Cancelar</button>
     </div>
   </ng-template>
@@ -395,9 +393,9 @@ color="#0b2555"
     </div>
     <div class="modal-body"><br>
       <label for="">Nuevo Nombre de Usuario</label><br>
-      <input [(ngModel)]="ViejaContrasena" class="form-control" type="text" name="ViejaContrasena" id=""><br>
-      <label for="">Nueva Correo</label><br>
-      <input  [(ngModel)]="NuevaContrasena" class="form-control" type="text" name="NuevaContrasena" id=""><br>
+      <input [(ngModel)]="NombreUser" class="form-control" type="text" name="NombreUser" id=""><br>
+      <label for="">Nuevo Correo</label><br>
+      <input  [(ngModel)]="CorreoUser" class="form-control" type="text" name="CorreoUser" id=""><br>
     </div>
     <div class="modal-footer">
       <button (click)="openVerticalling(verificar2)" (click)="modal.close('Close click')" class="btn btn-success">Actualizar</button>
@@ -416,7 +414,7 @@ color="#0b2555"
     </div>
     <div class="modal-body">
       <label for="">Introduca su Contraseña</label>
-      <input  [(ngModel)]="VerificarCalave" name="VerificarCalave"  class="form-control" type="text">
+      <input  [(ngModel)]="VerificarCalave" name="VerificarCalave"  class="form-control" type="password">
     </div>
     <div class="modal-footer">
       <button  (click)="CambirPass()" (click)="modal.close('Close click')" class="btn btn-success">Aceptar</button>
@@ -433,7 +431,7 @@ color="#0b2555"
     </div>
     <div class="modal-body">
       <label for="">Introduca su Contraseña</label>
-      <input [(ngModel)]="VerificarCalave" name="VerificarCalave" class="form-control" type="text">
+      <input [(ngModel)]="VerificarCalave" name="VerificarCalave" class="form-control" type="password">
     </div>
     <div class="modal-footer">
       <button  (click)="CambiarNombre()" (click)="modal.close('Close click')" class="btn btn-success">Aceptar</button>

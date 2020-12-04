@@ -62,6 +62,8 @@ export class HomeComponent implements OnInit {
   idPaciente;
   ocurtar =true
   muestra=false
+  NombreUser;
+  CorreoUser;
   ov="hola"
   constructor(configu: NgbCarouselConfig,public toastService: EditarServicioService,private ServicioService:ServicioService,private spinner: NgxSpinnerService, private http:HttpClient, config: NgbModalConfig, private modalService: NgbModal, private router:Router) {
     $(document).ready(function(){
@@ -135,6 +137,7 @@ export class HomeComponent implements OnInit {
   }
   openBackDropCustom(cambiarNombreUsuario) {
     this.modalService.open(cambiarNombreUsuario, {backdropClass: 'light-blue-backdrop'});
+    this.llenar()
   }
   openVerticall(verificar) {
     this.modalService.open(verificar, { centered: true });
@@ -142,7 +145,10 @@ export class HomeComponent implements OnInit {
   openVerticalling(verificar2) {
     this.modalService.open(verificar2, { centered: true });
   }
-
+  llenar(){
+    this.NombreUser = this.NombreLogin
+    this.CorreoUser = this.correo
+  }
 comprobar(verificar){
 if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaContrasena=="" || this.NuevaContrasena==undefined ) {
   this.CamposVacios()
@@ -161,11 +167,8 @@ if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaCon
        } else {
         this.http.get(" https://finalapis.herokuapp.com/api/ModClave/"+this.ViejaContrasena+"/"+this.idDoctor+"/"+this.NuevaContrasena+"").subscribe(data=>{
         this.MensageCambioClave=data
-        Swal.fire(
-          'Muy bien!',
-          this.MensageCambioClave.respuesta,
-          'success'
-        )
+        this.Msg = this.MensageCambioClave.respuesta
+        this.MensageCambio()
         });
        }
       } else {
@@ -175,20 +178,17 @@ if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaCon
   }
 
 CambiarNombre(){
-  if (this.ViejaContrasena=="" || this.ViejaContrasena==undefined || this.NuevaContrasena=="" || this.NuevaContrasena==undefined ) {
+  if (this.NombreUser=="" || this.NombreUser==undefined || this.CorreoUser=="" || this.CorreoUser==undefined ) {
     this.CamposVacios()
   } else {
     if (this.clave == this.VerificarCalave) {
      if (this.VerificarCalave==""||this.VerificarCalave==undefined) {
      this.CamposVaciosPass()
      } else {
-      this.http.get(" https://finalapis.herokuapp.com/api/modificar/"+this.ViejaContrasena+"/"+this.NuevaContrasena+"/"+this.idDoctor+"").subscribe(data=>{
+      this.http.get(" https://finalapis.herokuapp.com/api/modificar/"+this.NombreUser+"/"+this.CorreoUser+"/"+this.idDoctor+"").subscribe(data=>{
       this.MensageCambioClave=data
-      Swal.fire(
-        'Muy bien!',
-        this.MensageCambioClave.respuesta,
-        'success'
-      )
+       this.Msg = this.MensageCambioClave.respuesta
+       this.MensageCambio()
       });
      }
     } else {
@@ -342,6 +342,13 @@ readFile(file: File, subscriber: Subscriber<any>) {
 }
 
 CrearConsulta(){
+  if (this.fc == (0) || this.MotivoConsulta == undefined ||  this.MotivoConsulta =="" || this.NotaConsulta==undefined|| this.NotaConsulta =="") {
+    Swal.fire(
+      'Vaya!',
+      'Al parecer no lleno todos los campos requeridos!',
+      'warning'
+    )
+   } else {
   let dia = this.fc.day
   let mes = this.fc.month
   let año = this.fc.year
@@ -351,6 +358,7 @@ this.FechaFinal =dia +'-'+mes+'-'+año
    this.Msg=this.Valor.respuesta
     this.MensageGuardado()
   })
+   }
 }
 
 EliminarPacienteConsulta(){
@@ -384,9 +392,22 @@ MensageGuardado(){
      window.location.reload()
     }
   })
+ }
+ MensageCambio(){
+  Swal.fire({
+    title: 'Muy bien!',
+    text: ""+this.Msg+". Es posible que se cierre la sesion o tenga que iniciar nuevamente para aplicar los cambios realizados.!",
+    icon: 'success',
+    confirmButtonColor: '#3085d6',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      localStorage.clear()
+     this.router.navigate(['login'])
+    }
+  })
 
  }
-
  NoLoguiado(){
   Swal.fire({
     title: 'Apceso Denegado',
